@@ -17,6 +17,9 @@ import {
   Check,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLang } from "@/components/ui/lang-provider";
+import type { Dictionary } from "@/lib/i18n";
+import { LangToggle } from "@/components/ui/lang-toggle";
 
 type Answers = {
   role?: string;
@@ -29,48 +32,59 @@ type Answers = {
   contact?: string;
 };
 
-const COUNTRIES = [
-  { code: "KZ", ru: "Казахстан", flag: "🇰🇿" },
-  { code: "UZ", ru: "Узбекистан", flag: "🇺🇿" },
-  { code: "TJ", ru: "Таджикистан", flag: "🇹🇯" },
-  { code: "KG", ru: "Кыргызстан", flag: "🇰🇬" },
-  { code: "AZ", ru: "Азербайджан", flag: "🇦🇿" },
-  { code: "GE", ru: "Грузия", flag: "🇬🇪" },
-  { code: "AM", ru: "Армения", flag: "🇦🇲" },
-  { code: "MN", ru: "Монголия", flag: "🇲🇳" },
-  { code: "OT", ru: "Другая страна", flag: "🌍" },
-];
+const COUNTRY_FLAGS: Record<string, string> = {
+  KZ: "🇰🇿",
+  UZ: "🇺🇿",
+  TJ: "🇹🇯",
+  KG: "🇰🇬",
+  AZ: "🇦🇿",
+  GE: "🇬🇪",
+  AM: "🇦🇲",
+  MN: "🇲🇳",
+  OT: "🌍",
+};
 
-const ROLES = [
-  { id: "distributor", title: "Дистрибьютор / оптовик", desc: "Закупаю для перепродажи", icon: Building2 },
-  { id: "retail", title: "Сеть аптек / магазинов", desc: "Розничная сеть", icon: Store },
-  { id: "marketplace", title: "Маркетплейс / e-com", desc: "Wildberries, Ozon, etc.", icon: ShoppingCart },
-  { id: "private", title: "Private label", desc: "Хочу свой бренд", icon: FlaskConical },
-  { id: "other", title: "Другое", desc: "Не подходит вариантов", icon: HelpCircle },
-];
+const ROLE_ICONS = {
+  distributor: Building2,
+  retail: Store,
+  marketplace: ShoppingCart,
+  private: FlaskConical,
+  other: HelpCircle,
+};
 
-const CATEGORIES = [
-  { id: "sports", title: "Спортивное питание", icon: Dumbbell },
-  { id: "vitamins", title: "Витамины и минералы", icon: Pill },
-  { id: "clinical", title: "Клинические БАДы", icon: Heart },
-  { id: "wellness", title: "Wellness essentials", icon: Leaf },
-];
-
-const VOLUMES = [
-  { id: "trial", title: "Тестовая закупка", desc: "Хочу прощупать рынок" },
-  { id: "regular", title: "Регулярные поставки", desc: "Постоянные ежемесячные отгрузки" },
-  { id: "container", title: "Контейнерные объёмы", desc: "Большие партии в FCL/LCL" },
-  { id: "pl", title: "Private label", desc: "Свой бренд под ключ" },
-];
+const CATEGORY_ICONS = {
+  sports: Dumbbell,
+  vitamins: Pill,
+  clinical: Heart,
+  wellness: Leaf,
+};
 
 const TOTAL_STEPS = 5;
 
 export function QuizFlow() {
+  const { t } = useLang();
   const [started, setStarted] = useState(false);
   const [step, setStep] = useState(0); // 0..4 = quiz, 5 = thanks
   const [direction, setDirection] = useState(1);
   const [answers, setAnswers] = useState<Answers>({});
   const [submitted, setSubmitted] = useState(false);
+
+  const ROLES = t.quiz.step1.roles.map((r) => ({
+    ...r,
+    icon: ROLE_ICONS[r.id as keyof typeof ROLE_ICONS],
+  }));
+  const CATEGORIES = t.quiz.step2.categories.map((c) => ({
+    ...c,
+    icon: CATEGORY_ICONS[c.id as keyof typeof CATEGORY_ICONS],
+  }));
+  const VOLUMES = t.quiz.step4.volumes;
+  const COUNTRIES = (
+    Object.entries(t.quiz.step3.countryNames) as [string, string][]
+  ).map(([code, ru]) => ({
+    code,
+    ru,
+    flag: COUNTRY_FLAGS[code] || "🌍",
+  }));
 
   if (!started) {
     return <Intro onStart={() => setStarted(true)} />;
@@ -158,7 +172,10 @@ export function QuizFlow() {
             />
           </a>
           <div className="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.2em] text-[var(--color-stone-soft)]">
-            <span>Шаг {Math.min(step + 1, TOTAL_STEPS)}</span>
+            <LangToggle inverted />
+            <span>
+              {t.quiz.common.step} {Math.min(step + 1, TOTAL_STEPS)}
+            </span>
             <span className="opacity-50">/</span>
             <span>{TOTAL_STEPS}</span>
           </div>
@@ -188,9 +205,9 @@ export function QuizFlow() {
             >
               {step === 0 && (
                 <Step
-                  eyebrow="Вопрос 1 из 5"
-                  title="Кто вы?"
-                  hint="Это поможет нам подготовить релевантное предложение."
+                  eyebrow={t.quiz.step1.eyebrow}
+                  title={t.quiz.step1.title}
+                  hint={t.quiz.step1.hint}
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {ROLES.map((r) => {
@@ -235,9 +252,9 @@ export function QuizFlow() {
 
               {step === 1 && (
                 <Step
-                  eyebrow="Вопрос 2 из 5"
-                  title="Какие категории интересуют?"
-                  hint="Можно выбрать несколько."
+                  eyebrow={t.quiz.step2.eyebrow}
+                  title={t.quiz.step2.title}
+                  hint={t.quiz.step2.hint}
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {CATEGORIES.map((c) => {
@@ -300,9 +317,9 @@ export function QuizFlow() {
 
               {step === 2 && (
                 <Step
-                  eyebrow="Вопрос 3 из 5"
-                  title="Куда нужна поставка?"
-                  hint="Выберите целевой рынок — у нас готовая документация под каждый."
+                  eyebrow={t.quiz.step3.eyebrow}
+                  title={t.quiz.step3.title}
+                  hint={t.quiz.step3.hint}
                 >
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {COUNTRIES.map((c) => {
@@ -337,9 +354,9 @@ export function QuizFlow() {
 
               {step === 3 && (
                 <Step
-                  eyebrow="Вопрос 4 из 5"
-                  title="Какие объёмы планируете?"
-                  hint="Приблизительная оценка — мы предложим оптимальный формат."
+                  eyebrow={t.quiz.step4.eyebrow}
+                  title={t.quiz.step4.title}
+                  hint={t.quiz.step4.hint}
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {VOLUMES.map((v) => {
@@ -371,33 +388,33 @@ export function QuizFlow() {
 
               {step === 4 && (
                 <Step
-                  eyebrow="Последний шаг"
-                  title="Куда отправить прайс?"
-                  hint="Ответим в течение 2 часов в рабочее время."
+                  eyebrow={t.quiz.step5.eyebrow}
+                  title={t.quiz.step5.title}
+                  hint={t.quiz.step5.hint}
                 >
                   <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <QField
-                      label="Имя"
-                      placeholder="Иван"
+                      label={t.quiz.step5.name.label}
+                      placeholder={t.quiz.step5.name.placeholder}
                       value={answers.name || ""}
                       onChange={(v) => update({ name: v })}
                     />
                     <QField
-                      label="Компания"
-                      placeholder="ООО «Фарма-Дистрибуция»"
+                      label={t.quiz.step5.company.label}
+                      placeholder={t.quiz.step5.company.placeholder}
                       value={answers.company || ""}
                       onChange={(v) => update({ company: v })}
                     />
                     <QField
-                      label="Email"
+                      label={t.quiz.step5.email.label}
                       type="email"
-                      placeholder="ivan@company.com"
+                      placeholder={t.quiz.step5.email.placeholder}
                       value={answers.email || ""}
                       onChange={(v) => update({ email: v })}
                     />
                     <QField
-                      label="Telegram или WhatsApp"
-                      placeholder="@username · +7 (000) 000-00-00"
+                      label={t.quiz.step5.contact.label}
+                      placeholder={t.quiz.step5.contact.placeholder}
                       value={answers.contact || ""}
                       onChange={(v) => update({ contact: v })}
                     />
@@ -428,7 +445,7 @@ export function QuizFlow() {
                 )}
               >
                 <ArrowLeft size={14} />
-                Назад
+                {t.quiz.common.back}
               </button>
 
               {step < 4 ? (
@@ -443,7 +460,7 @@ export function QuizFlow() {
                       : "bg-[var(--color-bone)]/10 text-[var(--color-stone-soft)] cursor-not-allowed",
                   )}
                 >
-                  Дальше
+                  {t.quiz.common.next}
                   <span
                     className={cn(
                       "grid h-8 w-8 place-items-center rounded-full transition-transform",
@@ -467,7 +484,7 @@ export function QuizFlow() {
                       : "bg-[var(--color-bone)]/10 text-[var(--color-stone-soft)] cursor-not-allowed",
                   )}
                 >
-                  Получить прайс
+                  {t.quiz.common.getPrice}
                   <span
                     className={cn(
                       "grid h-8 w-8 place-items-center rounded-full transition-transform",
@@ -491,12 +508,12 @@ export function QuizFlow() {
                   <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--color-lime)] opacity-60 animate-ping" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-lime)]" />
                 </span>
-                B2B · только опт
+                {t.quiz.common.opt}
               </span>
               <span className="hidden sm:inline">
-                Прямые контракты США & ЕС
+                {t.quiz.common.usEu}
               </span>
-              <span>До −35% к рынку</span>
+              <span>{t.quiz.common.noRetail}</span>
             </div>
           )}
         </div>
@@ -564,6 +581,10 @@ function QField({
 }
 
 function ThankYou({ answers }: { answers: Answers }) {
+  const { t } = useLang();
+  const title = answers.name
+    ? t.quiz.thanks.thanksName.replace("{name}", answers.name)
+    : `${t.quiz.thanks.title}!`;
   return (
     <div className="text-center py-8 lg:py-16">
       <div className="inline-flex h-16 w-16 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-[var(--color-lime)]/15 border border-[var(--color-lime)]/30 mb-6">
@@ -574,14 +595,13 @@ function ThankYou({ answers }: { answers: Answers }) {
         />
       </div>
       <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
-        Заявка принята
+        {t.quiz.thanks.accepted}
       </div>
       <h1 className="mt-3 font-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] tracking-[-0.02em]">
-        {answers.name ? `Спасибо, ${answers.name}!` : "Спасибо!"}
+        {title}
       </h1>
       <p className="mt-4 text-[14px] lg:text-[16px] text-[var(--color-stone-soft)] leading-relaxed max-w-[44ch] mx-auto">
-        Менеджер свяжется с вами в течение 2 часов — пришлём прайс под ваш
-        бизнес и обсудим условия поставки.
+        {t.quiz.thanks.body}
       </p>
 
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto">
@@ -591,7 +611,7 @@ function ThankYou({ answers }: { answers: Answers }) {
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-bone)]/10 hover:bg-[var(--color-bone)]/15 transition-colors px-5 py-3 text-[13px] font-semibold"
         >
-          Написать в Telegram
+          {t.quiz.thanks.tg}
         </a>
         <a
           href="https://wa.me/13126817103"
@@ -599,7 +619,7 @@ function ThankYou({ answers }: { answers: Answers }) {
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-bone)]/10 hover:bg-[var(--color-bone)]/15 transition-colors px-5 py-3 text-[13px] font-semibold"
         >
-          Открыть WhatsApp
+          {t.quiz.thanks.wa}
         </a>
       </div>
 
@@ -607,7 +627,7 @@ function ThankYou({ answers }: { answers: Answers }) {
         href="/"
         className="mt-8 inline-block font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-stone-soft)] hover:text-[var(--color-bone)] transition-colors"
       >
-        ← Вернуться на сайт
+        {t.quiz.thanks.backToSite}
       </a>
     </div>
   );
@@ -621,14 +641,8 @@ const INTRO_BOTTLES = [
   { src: "/media/photo3.png", alt: "OstroVit Biotin Plus" },
 ];
 
-const INTRO_PERKS = [
-  { title: "До −35%", body: "К рынку, без посредников" },
-  { title: "Ответ за 2 часа", body: "В рабочее время" },
-  { title: "США & ЕС", body: "Прямые контракты с фабриками" },
-  { title: "Без регистрации", body: "5 вопросов — и готово" },
-];
-
 function Intro({ onStart }: { onStart: () => void }) {
+  const { t } = useLang();
   return (
     <main className="relative min-h-screen bg-[var(--color-ink)] text-[var(--color-bone)] overflow-hidden">
       {/* Backgrounds */}
@@ -671,12 +685,15 @@ function Intro({ onStart }: { onStart: () => void }) {
               draggable={false}
             />
           </a>
-          <a
-            href="/"
-            className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-stone-soft)] hover:text-[var(--color-bone)] transition-colors"
-          >
-            ← На сайт
-          </a>
+          <div className="flex items-center gap-3">
+            <LangToggle inverted />
+            <a
+              href="/"
+              className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-stone-soft)] hover:text-[var(--color-bone)] transition-colors"
+            >
+              {t.quiz.intro.backToSite}
+            </a>
+          </div>
         </div>
       </header>
 
@@ -697,12 +714,12 @@ function Intro({ onStart }: { onStart: () => void }) {
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-lime)]" />
                 </span>
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] font-semibold">
-                  Только опт · B2B
+                  {t.quiz.intro.eyebrowOpt}
                 </span>
               </div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--color-bone)]/15 bg-[var(--color-bone)]/[0.05] text-[var(--color-stone-soft)]">
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] font-semibold">
-                  Розница не обслуживается
+                  {t.quiz.intro.eyebrowNoRetail}
                 </span>
               </div>
             </motion.div>
@@ -713,8 +730,10 @@ function Intro({ onStart }: { onStart: () => void }) {
               transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="mt-5 font-display text-[30px] sm:text-[38px] md:text-[44px] lg:text-[48px] xl:text-[56px] leading-[1.05] tracking-[-0.02em] text-balance"
             >
-              <span className="text-[var(--color-lime)]">Витамины и спортпит</span>{" "}
-              оптом — напрямую с фабрик США&nbsp;и&nbsp;ЕС.
+              <span className="text-[var(--color-lime)]">
+                {t.quiz.intro.headline1}
+              </span>{" "}
+              {t.quiz.intro.headline2}
             </motion.h1>
 
             <motion.p
@@ -723,11 +742,11 @@ function Intro({ onStart }: { onStart: () => void }) {
               transition={{ duration: 0.7, delay: 0.18 }}
               className="mt-5 text-[14px] lg:text-[16px] text-[var(--color-stone-soft)] leading-relaxed max-w-[52ch]"
             >
-              Ответьте на{" "}
+              {t.quiz.intro.description1}{" "}
               <span className="text-[var(--color-bone)] font-medium">
-                5 коротких вопросов
+                {t.quiz.intro.descriptionHl}
               </span>{" "}
-              — пришлём персональное предложение с ценами под ваш бизнес.
+              {t.quiz.intro.description2}
             </motion.p>
 
             {/* CTA */}
@@ -742,14 +761,14 @@ function Intro({ onStart }: { onStart: () => void }) {
                 onClick={onStart}
                 className="group inline-flex items-center gap-3 rounded-full bg-[var(--color-lime)] text-[var(--color-bone)] pl-6 pr-2 py-3 text-[14px] lg:text-[15px] font-semibold tracking-wide hover:bg-[var(--color-lime-soft)] transition-colors shadow-[0_10px_30px_rgba(59,130,246,0.35)]"
               >
-                Получить предложение
+                {t.quiz.intro.cta}
                 <span className="grid h-9 w-9 place-items-center rounded-full bg-[var(--color-ink)] text-[var(--color-lime)] transition-transform group-hover:translate-x-0.5">
                   <ArrowRight size={16} strokeWidth={2.5} />
                 </span>
               </button>
               <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--color-stone-soft)] flex items-center gap-2">
                 <Check size={12} className="text-[var(--color-lime)]" />
-                60 секунд · без регистрации
+                {t.quiz.intro.ctaHint}
               </span>
             </motion.div>
           </div>
@@ -767,7 +786,7 @@ function Intro({ onStart }: { onStart: () => void }) {
           transition={{ duration: 0.7, delay: 0.5 }}
           className="mx-auto max-w-[1240px] mt-10 lg:mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4"
         >
-          {INTRO_PERKS.map((p) => (
+          {t.quiz.intro.perks.map((p) => (
             <div
               key={p.title}
               className="rounded-xl border border-[var(--color-bone)]/15 bg-[var(--color-bone)]/[0.04] p-4 lg:p-5"
@@ -786,9 +805,9 @@ function Intro({ onStart }: { onStart: () => void }) {
       {/* Trust footer */}
       <div className="relative z-10 px-6 lg:px-10 pb-10">
         <div className="mx-auto max-w-[1240px] pt-6 border-t border-[var(--color-bone)]/10 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-[0.18em] text-[var(--color-stone-soft)]">
-          <span>B2B · только опт</span>
-          <span className="hidden sm:inline">Прямые контракты США & ЕС</span>
-          <span>Розница не обслуживается</span>
+          <span>{t.quiz.common.opt}</span>
+          <span className="hidden sm:inline">{t.quiz.common.usEu}</span>
+          <span>{t.quiz.common.noRetail}</span>
         </div>
       </div>
     </main>
@@ -796,6 +815,7 @@ function Intro({ onStart }: { onStart: () => void }) {
 }
 
 function IntroBottles() {
+  const { t } = useLang();
   return (
     <div className="relative h-[320px] sm:h-[440px] lg:h-[560px] pointer-events-none -mx-2 sm:mx-0">
       {/* Background glow */}
@@ -846,7 +866,7 @@ function IntroBottles() {
         <div className="rounded-full bg-[var(--color-lime)] text-[var(--color-bone)] px-3.5 py-1.5 shadow-[0_10px_28px_rgba(59,130,246,0.5)]">
           <div className="flex items-baseline gap-2">
             <span className="font-mono text-[9px] uppercase tracking-[0.15em] opacity-90">
-              цена
+              {t.hero.tagDiscount}
             </span>
             <span className="font-display text-[16px] font-bold leading-none">
               −35%
@@ -866,7 +886,7 @@ function IntroBottles() {
           <div className="flex items-center gap-2">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-lime)]" />
             <span className="font-mono text-[10px] uppercase tracking-[0.16em]">
-              GMP · США & ЕС
+              GMP · US & EU
             </span>
           </div>
         </div>

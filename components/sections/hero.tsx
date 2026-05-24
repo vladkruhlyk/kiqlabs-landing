@@ -1,12 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-
-const stats = [
-  { value: "8", label: "стран в фокусе (СНГ)" },
-  { value: "до −35%", label: "к закупочной цене" },
-  { value: "14 дней", label: "средний срок поставки" },
-];
+import { useLang } from "@/components/ui/lang-provider";
 
 const bottles = [
   {
@@ -33,6 +28,7 @@ const bottles = [
 ];
 
 function FloatingBottles() {
+  const { t } = useLang();
   return (
     <div className="relative h-[300px] sm:h-[400px] lg:h-[540px] pointer-events-none -mx-2 sm:mx-0">
       {/* Background flourishes */}
@@ -105,7 +101,7 @@ function FloatingBottles() {
         <div className="rounded-full bg-[var(--color-lime)] text-[var(--color-bone)] px-3.5 py-1.5 shadow-[0_8px_24px_rgba(59,130,246,0.45)]">
           <div className="flex items-baseline gap-2">
             <span className="font-mono text-[9px] uppercase tracking-[0.15em] opacity-80">
-              цена
+              {t.hero.tagDiscount}
             </span>
             <span className="font-display text-[16px] font-bold leading-none">
               −35%
@@ -124,7 +120,7 @@ function FloatingBottles() {
           <div className="flex items-center gap-2">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-lime)]" />
             <span className="font-mono text-[10px] uppercase tracking-[0.16em]">
-              GMP · proof of analysis
+              {t.hero.tagGmp}
             </span>
           </div>
         </div>
@@ -138,7 +134,7 @@ function FloatingBottles() {
       >
         <div className="rounded-full bg-[var(--color-bone)] border border-[var(--color-ink)] text-[var(--color-ink)] px-3 py-1">
           <span className="font-mono text-[10px] uppercase tracking-[0.16em]">
-            Прямые контракты
+            {t.hero.tagDirect}
           </span>
         </div>
       </motion.div>
@@ -199,6 +195,8 @@ function Bottle({
 }
 
 export function Hero() {
+  const { t } = useLang();
+  const stats = t.hero.stats;
   return (
     <section
       id="top"
@@ -230,13 +228,13 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--color-lime)] opacity-60 animate-ping" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-lime)]" />
             </span>
-            Только B2B
+            {t.hero.eyebrow1}
           </span>
           <span className="text-[var(--color-line)]">/</span>
-          <span>Прямые контракты</span>
+          <span>{t.hero.eyebrow2}</span>
           <span className="text-[var(--color-line)]">/</span>
           <span className="text-[var(--color-ink)] font-medium">
-            Розница не обслуживается
+            {t.hero.eyebrow3}
           </span>
         </motion.div>
 
@@ -246,19 +244,19 @@ export function Hero() {
           <div className="col-span-12 lg:col-span-6 xl:col-span-5 flex flex-col">
             <h1 className="font-display text-balance text-[32px] sm:text-[44px] md:text-[52px] lg:text-[56px] xl:text-[68px] leading-[1.02] tracking-[-0.02em]">
               <Reveal>
-                <span className="block">Витамины</span>
+                <span className="block">{t.hero.headline1}</span>
               </Reveal>
               <Reveal delay={0.08}>
                 <span className="block">
-                  и спортпит{" "}
+                  {t.hero.headline2a}{" "}
                   <span className="font-display text-[var(--color-grass)]">
-                    оптом
+                    {t.hero.headline2b}
                   </span>
                 </span>
               </Reveal>
               <Reveal delay={0.16}>
                 <span className="block">
-                  из США{" "}
+                  {t.hero.headline3a}{" "}
                   <span className="inline-flex items-center align-middle mx-1 lg:mx-2">
                     <span className="inline-grid place-items-center h-[0.75em] w-[0.75em] rounded-full bg-[var(--color-lime)] text-[var(--color-bone)]">
                       <svg
@@ -274,7 +272,8 @@ export function Hero() {
                       </svg>
                     </span>
                   </span>
-                  <span className="font-display">и</span> Европы.
+                  <span className="font-display">{t.hero.headline3b}</span>{" "}
+                  {t.hero.headline3c}
                 </span>
               </Reveal>
             </h1>
@@ -285,11 +284,11 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="mt-8 lg:mt-10 text-[var(--color-ink-soft)] text-[15px] lg:text-[17px] leading-relaxed max-w-md text-pretty"
             >
-              Прямые контракты с фабриками США и ЕС.{" "}
+              {t.hero.description1}{" "}
               <span className="text-[var(--color-ink)] font-medium">
-                До −35% к рынку
+                {t.hero.descriptionHighlight}
               </span>
-              , готовые документы под СНГ, отгрузка от 14 дней.
+              {t.hero.description2}
             </motion.p>
 
             <motion.div
@@ -302,7 +301,7 @@ export function Hero() {
                 href="#contact"
                 className="group inline-flex items-center gap-3 rounded-full bg-[var(--color-ink)] text-[var(--color-bone)] pl-5 pr-2 py-2 text-[13px] font-semibold tracking-wide hover:bg-[var(--color-grass)] transition-colors"
               >
-                Запросить B2B-прайс
+                {t.hero.ctaPrice}
                 <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--color-lime)] text-[var(--color-bone)] transition-transform group-hover:translate-x-0.5">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                     <path
@@ -322,7 +321,7 @@ export function Hero() {
                   <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--color-lime)] opacity-60 animate-ping" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-lime)]" />
                 </span>
-                Подобрать через опрос — 60 сек
+                {t.hero.ctaQuiz}
               </a>
             </motion.div>
           </div>

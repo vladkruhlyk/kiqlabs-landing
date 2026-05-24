@@ -2,47 +2,12 @@
 
 import { motion } from "motion/react";
 import { Check, X } from "lucide-react";
-
-const rows = [
-  {
-    metric: "Закупочная цена",
-    without: "Розничная + наценка трейдера",
-    with: "Прямой контракт с фабрикой",
-    win: "до −35%",
-  },
-  {
-    metric: "Минимальная партия",
-    without: "От полного контейнера",
-    with: "Гибкий объём под партнёра",
-    win: "ниже порог входа",
-  },
-  {
-    metric: "Сроки поставки",
-    without: "60–90 дней",
-    with: "14–28 дней",
-    win: "в 3× быстрее",
-  },
-  {
-    metric: "Документы под рынок",
-    without: "Делаете сами, риск задержек",
-    with: "Готовое досье под СНГ и Кавказ",
-    win: "0 рисков",
-  },
-  {
-    metric: "Валютные риски",
-    without: "Платите в $ напрямую",
-    with: "Можно в KZT, UZS, RUB",
-    win: "−2-4% курсовых",
-  },
-  {
-    metric: "Складские остатки",
-    without: "Лежит у вас, замораживает оборотку",
-    with: "Дозаказ за 14 дней",
-    win: "оборотка свободна",
-  },
-];
+import { useLang } from "@/components/ui/lang-provider";
 
 export function Comparison() {
+  const { t } = useLang();
+  const rows = t.comparison.rows;
+
   return (
     <section className="relative py-16 lg:py-32 bg-[var(--color-paper)]">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
@@ -50,23 +15,24 @@ export function Comparison() {
           <div>
             <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-soft)]">
               <span className="inline-block h-px w-8 bg-[var(--color-ink)]" />
-              <span>§ 03 — Сравнение</span>
+              <span>{t.comparison.eyebrow}</span>
             </div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7 }}
-              className="mt-6 font-display text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] tracking-[-0.02em] text-balance max-w-[18ch]"
+              className="mt-6 font-display text-[36px] sm:text-[48px] lg:text-[60px] leading-[1.02] tracking-[-0.02em] text-balance max-w-[18ch]"
             >
-              Почему{" "}
-              <span className="text-[var(--color-grass)]">с KIQ дешевле</span>,
-              чем напрямую.
+              {t.comparison.headline1}{" "}
+              <span className="text-[var(--color-grass)]">
+                {t.comparison.headlineHl}
+              </span>
+              {t.comparison.headline2}
             </motion.h2>
           </div>
           <p className="max-w-sm text-[15px] text-[var(--color-ink-soft)] leading-relaxed">
-            Шесть параметров, по которым мы выигрываем у прямого импорта и у
-            других дистрибьюторов в регионе.
+            {t.comparison.description}
           </p>
         </div>
 
@@ -75,22 +41,22 @@ export function Comparison() {
           {/* Header */}
           <div className="grid grid-cols-12 bg-[var(--color-ink)] text-[var(--color-bone)] py-4 px-6">
             <div className="col-span-3 font-mono text-[11px] uppercase tracking-[0.18em] opacity-70">
-              Параметр
+              {t.comparison.colMetric}
             </div>
             <div className="col-span-4 font-mono text-[11px] uppercase tracking-[0.18em] flex items-center gap-2 text-[#ff7a6a]">
               <span className="grid h-5 w-5 place-items-center rounded-full bg-[#ff7a6a]/15">
                 <X size={12} strokeWidth={3} />
               </span>
-              Прямой импорт / трейдер
+              {t.comparison.colWithout}
             </div>
             <div className="col-span-3 font-mono text-[11px] uppercase tracking-[0.18em] flex items-center gap-2 text-[var(--color-lime)]">
               <span className="grid h-5 w-5 place-items-center rounded-full bg-[var(--color-lime)]/15">
                 <Check size={12} strokeWidth={3} />
               </span>
-              С KIQ Labs
+              {t.comparison.colWith}
             </div>
             <div className="col-span-2 font-mono text-[11px] uppercase tracking-[0.18em] opacity-70 text-right">
-              Выгода
+              {t.comparison.colWin}
             </div>
           </div>
 
@@ -123,7 +89,7 @@ export function Comparison() {
                 </span>
               </div>
               <div className="col-span-2 text-right">
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-[var(--color-lime)] border border-[var(--color-lime-deep)] text-[var(--color-ink)] font-mono text-[11px] font-bold uppercase tracking-[0.08em]">
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-[var(--color-lime)] border border-[var(--color-lime-deep)] text-[var(--color-bone)] font-mono text-[11px] font-bold uppercase tracking-[0.08em]">
                   {row.win}
                 </span>
               </div>
@@ -158,7 +124,7 @@ export function Comparison() {
                 </div>
               </div>
               <div className="mt-3">
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-[var(--color-lime)] border border-[var(--color-lime-deep)] text-[var(--color-ink)] font-mono text-[10px] font-bold uppercase tracking-[0.1em]">
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-[var(--color-lime)] border border-[var(--color-lime-deep)] text-[var(--color-bone)] font-mono text-[10px] font-bold uppercase tracking-[0.1em]">
                   {row.win}
                 </span>
               </div>

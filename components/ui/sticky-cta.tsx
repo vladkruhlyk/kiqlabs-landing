@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useLang } from "@/components/ui/lang-provider";
 
 export function StickyCTA() {
   const [visible, setVisible] = useState(false);
+  const { t } = useLang();
 
   useEffect(() => {
     const onScroll = () => {
@@ -40,7 +42,7 @@ export function StickyCTA() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-lime)]" />
               </span>
               <span className="font-mono text-[11px] uppercase tracking-[0.18em] opacity-90">
-                Готовы к диалогу
+                {t.sticky.ready}
               </span>
             </div>
 
@@ -74,8 +76,8 @@ export function StickyCTA() {
               href="#contact"
               className="inline-flex items-center gap-2 sm:gap-3 rounded-full bg-[var(--color-lime)] text-[var(--color-bone)] px-4 sm:px-5 py-2 text-[12px] sm:text-[13px] font-semibold tracking-wide hover:bg-[var(--color-lime-soft)] transition-colors"
             >
-              <span className="hidden sm:inline">Запросить B2B-прайс</span>
-              <span className="sm:hidden">B2B-прайс</span>
+              <span className="hidden sm:inline">{t.sticky.ctaLong}</span>
+              <span className="sm:hidden">{t.sticky.ctaShort}</span>
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path
                   d="M2.5 6h7m0 0L6 2.5M9.5 6L6 9.5"

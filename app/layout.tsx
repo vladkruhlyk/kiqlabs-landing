@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Unbounded, Geist, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LenisProvider } from "@/components/ui/lenis-provider";
+import { LangProvider } from "@/components/ui/lang-provider";
 
 const unbounded = Unbounded({
   subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
@@ -45,7 +46,9 @@ export default function RootLayout({
       className={`${unbounded.variable} ${geist.variable} ${jetbrains.variable}`}
     >
       <body className="antialiased">
-        <LenisProvider>{children}</LenisProvider>
+        <LangProvider>
+          <LenisProvider>{children}</LenisProvider>
+        </LangProvider>
       </body>
     </html>
   );

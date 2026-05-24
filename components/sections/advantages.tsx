@@ -2,41 +2,14 @@
 
 import { motion } from "motion/react";
 import { ShieldCheck, Boxes, Truck, FileCheck, Handshake } from "lucide-react";
+import { useLang } from "@/components/ui/lang-provider";
 
-const advantages = [
-  {
-    n: "01",
-    icon: ShieldCheck,
-    title: "Закупка в США и ЕС",
-    body: "Товары только у верифицированных производителей. Никакого «серого» импорта или неподтверждённых каналов.",
-  },
-  {
-    n: "02",
-    icon: Boxes,
-    title: "Только опт",
-    body: "Работаем строго B2B. Все процессы и цены выстроены под дистрибьюторов, сети и импортёров.",
-  },
-  {
-    n: "03",
-    icon: Truck,
-    title: "B2B-логистика",
-    body: "Контейнерная логистика с консолидацией, холодовой цепью и онлайн-отслеживанием отгрузок.",
-  },
-  {
-    n: "04",
-    icon: FileCheck,
-    title: "Документы и compliance",
-    body: "Полные регуляторные досье, сертификаты анализа, халяль/кошер и готовая импортная документация.",
-  },
-  {
-    n: "05",
-    icon: Handshake,
-    title: "Долгосрочные партнёрства",
-    body: "Инвестируем в многолетние отношения — эксклюзивные права, совместное планирование и развитие рынка.",
-  },
-];
+const ICONS = [ShieldCheck, Boxes, Truck, FileCheck, Handshake];
 
 export function Advantages() {
+  const { t } = useLang();
+  const advantages = t.advantages.items;
+
   return (
     <section className="relative py-16 lg:py-32 bg-[var(--color-paper)]">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
@@ -44,23 +17,24 @@ export function Advantages() {
           <div className="col-span-12 lg:col-span-8">
             <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-soft)]">
               <span className="inline-block h-px w-8 bg-[var(--color-ink)]" />
-              <span>§ 08 — Почему мы</span>
+              <span>{t.advantages.eyebrow}</span>
             </div>
             <h2 className="mt-6 font-display text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] tracking-[-0.02em]">
-              Пять причин, почему{" "}
-              <span className="text-[var(--color-grass)]">с нами выгоднее</span>
-              .
+              {t.advantages.headline1}{" "}
+              <span className="text-[var(--color-grass)]">
+                {t.advantages.headlineHl}
+              </span>
+              {t.advantages.headline2}
             </h2>
           </div>
           <p className="col-span-12 lg:col-span-4 text-[14px] lg:text-[15px] text-[var(--color-ink-soft)] leading-relaxed">
-            Не маркетинг — конкретные операционные преимущества, которые
-            закрываются цифрами в первом же договоре.
+            {t.advantages.description}
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
           {advantages.map((a, i) => {
-            const Icon = a.icon;
+            const Icon = ICONS[i];
             const isFeatured = i === 0;
             return (
               <motion.article

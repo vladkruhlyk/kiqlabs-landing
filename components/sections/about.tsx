@@ -1,31 +1,12 @@
 "use client";
 
 import { motion } from "motion/react";
-
-const benefits = [
-  {
-    n: "01",
-    title: "Прямые контракты",
-    body: "Контракт напрямую с фабрикой в США и ЕС. Без 2–3 трейдеров в цепочке.",
-  },
-  {
-    n: "02",
-    title: "−20–40% от рынка",
-    body: "Никаких накруток посредников. Закупочная цена ниже на 20–40%.",
-  },
-  {
-    n: "03",
-    title: "Гибкие объёмы",
-    body: "Подбираем партию под партнёра — от пробной до сетевой загрузки.",
-  },
-  {
-    n: "04",
-    title: "14–28 дней",
-    body: "Средний срок отгрузки. Под рукой склад в США и ЕС.",
-  },
-];
+import { useLang } from "@/components/ui/lang-provider";
 
 export function About() {
+  const { t } = useLang();
+  const benefits = t.about.benefits;
+
   return (
     <section id="about" className="relative py-16 lg:py-32">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
@@ -33,7 +14,7 @@ export function About() {
           <div className="col-span-12 lg:col-span-8">
             <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-soft)]">
               <span className="inline-block h-px w-8 bg-[var(--color-ink)]" />
-              <span>§ 02 — О нас</span>
+              <span>{t.about.eyebrow}</span>
             </div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -42,18 +23,18 @@ export function About() {
               transition={{ duration: 0.7 }}
               className="mt-6 font-display text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] tracking-[-0.02em]"
             >
-              Закупаем у производителя — продаём{" "}
-              <span className="text-[var(--color-grass)]">без посредников</span>
+              {t.about.headline1}{" "}
+              <span className="text-[var(--color-grass)]">
+                {t.about.headlineHl}
+              </span>
               .
             </motion.h2>
           </div>
           <p className="col-span-12 lg:col-span-4 text-[14px] lg:text-[15px] text-[var(--color-ink-soft)] leading-relaxed">
-            KIQ Labs — B2B-дистрибьютор с прямыми контрактами на заводах США и
-            Европы. Отгружаем в страны СНГ под объёмы партнёра.
+            {t.about.description}
           </p>
         </div>
 
-        {/* Benefits 4×1 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--color-line)] border border-[var(--color-line)] rounded-2xl overflow-hidden">
           {benefits.map((b, i) => (
             <motion.div
@@ -81,7 +62,6 @@ export function About() {
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

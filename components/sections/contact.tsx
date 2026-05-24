@@ -3,9 +3,11 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useLang } from "@/components/ui/lang-provider";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const { t } = useLang();
 
   return (
     <section id="contact" className="relative py-16 lg:py-32">
@@ -15,62 +17,61 @@ export function Contact() {
           <div className="col-span-12 lg:col-span-5">
             <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-soft)]">
               <span className="inline-block h-px w-8 bg-[var(--color-ink)]" />
-              <span>§ 09 — Получить прайс</span>
+              <span>{t.contact.eyebrow}</span>
             </div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.9 }}
-              className="mt-6 font-display text-[28px] sm:text-[40px] md:text-[52px] lg:text-[60px] leading-[1.1] tracking-[-0.025em] text-balance"
+              className="mt-6 font-display text-[36px] sm:text-[52px] lg:text-[68px] leading-[1.02] tracking-[-0.025em] text-balance"
             >
-              Получите B2B-прайс{" "}
+              {t.contact.headline1}{" "}
               <span className="font-display text-[var(--color-grass)]">
-                за 1 рабочий день
+                {t.contact.headlineHl}
               </span>
-              .
+              {t.contact.headline2}
             </motion.h2>
             <p className="mt-6 max-w-md text-[15px] text-[var(--color-ink-soft)] leading-relaxed">
-              Оставьте контакты — пришлём прайс с действующими ценами по вашим
-              SKU, рассчитаем логистику и оформим документы под ваш рынок.
+              {t.contact.description}
             </p>
 
-            <div className="mt-10 lg:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 border-t border-[var(--color-line)] pt-8">
+            <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-[var(--color-line)] pt-8">
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)]">
-                  Телефон
+                  {t.contact.phoneLabel}
                 </div>
                 <a
                   href="tel:+13126817103"
-                  className="mt-2 block font-display text-[18px] sm:text-[20px] lg:text-[22px] leading-tight break-all"
+                  className="mt-2 block font-display text-[22px] leading-tight"
                 >
                   +1 (312) 681‑7103
                 </a>
               </div>
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)]">
-                  Email
+                  {t.contact.emailLabel}
                 </div>
                 <a
                   href="mailto:info@kiqlabs.global"
-                  className="mt-2 block font-display text-[18px] sm:text-[20px] lg:text-[22px] leading-tight break-all"
+                  className="mt-2 block font-display text-[22px] leading-tight"
                 >
                   info@kiqlabs.global
                 </a>
               </div>
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)]">
-                  Главный офис
+                  {t.contact.hqLabel}
                 </div>
-                <div className="mt-2 font-display text-[18px] sm:text-[20px] lg:text-[22px] leading-tight">
-                  Чикаго, IL · США
+                <div className="mt-2 font-display text-[22px] leading-tight">
+                  Chicago, IL · USA
                 </div>
               </div>
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)]">
-                  Каналы связи
+                  {t.contact.channelsLabel}
                 </div>
-                <div className="mt-2 flex flex-wrap gap-1.5 font-mono text-[10px]">
+                <div className="mt-2 flex flex-wrap gap-2 font-mono text-[11px]">
                   {["Telegram", "WhatsApp", "LinkedIn", "Instagram"].map((s) => (
                     <span
                       key={s}
@@ -93,14 +94,13 @@ export function Contact() {
                 className="bg-[var(--color-ink)] text-[var(--color-bone)] p-10 lg:p-14 rounded-2xl"
               >
                 <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
-                  ● Запрос принят
+                  {t.contact.success.label}
                 </div>
                 <h3 className="mt-4 font-display text-[28px] lg:text-[36px] leading-tight">
-                  Спасибо. Ваша заявка в обработке.
+                  {t.contact.success.title}
                 </h3>
                 <p className="mt-4 max-w-md text-[15px] text-[var(--color-stone-soft)] leading-relaxed">
-                  Менеджер KIQ Labs ответит вам на email в течение одного
-                  рабочего дня — с прайсом, условиями и следующими шагами.
+                  {t.contact.success.body}
                 </p>
               </motion.div>
             ) : (
@@ -113,62 +113,60 @@ export function Contact() {
               >
                 <div className="flex items-center justify-between pb-4 border-b border-[var(--color-line)]">
                   <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink)]">
-                    B2B-заявка
+                    {t.contact.formCardLabel}
                   </div>
                   <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[var(--color-lime)]/15 border border-[var(--color-lime-deep)]/40 text-[var(--color-lime-deep)]">
                     <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-lime-deep)]" />
                     <span className="font-mono text-[9px] uppercase tracking-[0.16em] font-semibold">
-                      Ответ за 1 день
+                      {t.contact.formCardBadge}
                     </span>
                   </span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <Field label="ФИО" name="name" placeholder="Иван Иванов" />
                   <Field
-                    label="Компания"
-                    name="company"
-                    placeholder="ООО «Фарма-Дистрибуция»"
+                    label={t.contact.fields.name.label}
+                    name="name"
+                    placeholder={t.contact.fields.name.placeholder}
                   />
                   <Field
-                    label="Email"
+                    label={t.contact.fields.company.label}
+                    name="company"
+                    placeholder={t.contact.fields.company.placeholder}
+                  />
+                  <Field
+                    label={t.contact.fields.email.label}
                     name="email"
                     type="email"
-                    placeholder="ivan@company.com"
+                    placeholder={t.contact.fields.email.placeholder}
                   />
                   <Field
-                    label="Телефон"
+                    label={t.contact.fields.phone.label}
                     name="phone"
                     type="tel"
-                    placeholder="+7 (000) 000‑00‑00"
+                    placeholder={t.contact.fields.phone.placeholder}
                   />
                   <CountrySelect />
                 </div>
 
                 <div>
                   <label className="block font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)] mb-2">
-                    Тип запроса
+                    {t.contact.inquiryLabel}
                   </label>
                   <div className="flex flex-wrap gap-2">
-                    {[
-                      "Опт",
-                      "Представительство",
-                      "Private label",
-                      "Выход на рынок",
-                      "Другое",
-                    ].map((t, i) => (
+                    {t.contact.inquiryOptions.map((opt, i) => (
                       <label
-                        key={t}
+                        key={opt}
                         className="inline-flex items-center gap-2 px-4 py-2 border border-[var(--color-line)] rounded-full text-[13px] cursor-pointer hover:border-[var(--color-ink)] transition-colors has-[:checked]:bg-[var(--color-ink)] has-[:checked]:text-[var(--color-bone)] has-[:checked]:border-[var(--color-ink)]"
                       >
                         <input
                           type="radio"
                           name="inquiry"
-                          value={t}
+                          value={opt}
                           defaultChecked={i === 0}
                           className="appearance-none w-0 h-0 absolute"
                         />
-                        {t}
+                        {opt}
                       </label>
                     ))}
                   </div>
@@ -176,26 +174,25 @@ export function Contact() {
 
                 <div>
                   <label className="block font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)] mb-2">
-                    Сообщение
+                    {t.contact.messageLabel}
                   </label>
                   <textarea
                     name="message"
                     rows={4}
-                    placeholder="Целевые категории, ожидаемые объёмы, ваш текущий поставщик."
+                    placeholder={t.contact.messagePlaceholder}
                     className="w-full bg-[var(--color-paper)] border border-[var(--color-line)] focus:border-[var(--color-ink)] rounded-lg px-4 py-3 text-[14px] outline-none placeholder:text-[var(--color-stone-soft)] resize-none transition-colors"
                   />
                 </div>
 
                 <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
                   <p className="font-mono text-[10px] text-[var(--color-ink-soft)] max-w-xs leading-relaxed">
-                    Отправляя форму, вы соглашаетесь, что KIQ Labs Global
-                    свяжется с вами по B2B-партнёрству.
+                    {t.contact.consent}
                   </p>
                   <button
                     type="submit"
                     className="group inline-flex items-center gap-3 rounded-full bg-[var(--color-ink)] text-[var(--color-bone)] pl-6 pr-2 py-2.5 text-[13px] font-semibold tracking-wide hover:bg-[var(--color-grass)] transition-colors"
                   >
-                    Получить B2B-прайс
+                    {t.contact.submit}
                     <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--color-lime)] text-[var(--color-bone)] transition-transform group-hover:translate-x-0.5">
                       <svg
                         width="12"
@@ -222,26 +219,18 @@ export function Contact() {
   );
 }
 
-const COUNTRIES = [
-  { code: "KZ", ru: "Казахстан", flag: "🇰🇿" },
-  { code: "UZ", ru: "Узбекистан", flag: "🇺🇿" },
-  { code: "TJ", ru: "Таджикистан", flag: "🇹🇯" },
-  { code: "KG", ru: "Кыргызстан", flag: "🇰🇬" },
-  { code: "AZ", ru: "Азербайджан", flag: "🇦🇿" },
-  { code: "GE", ru: "Грузия", flag: "🇬🇪" },
-  { code: "AM", ru: "Армения", flag: "🇦🇲" },
-  { code: "MN", ru: "Монголия", flag: "🇲🇳" },
-  { code: "OT", ru: "Другая страна", flag: "🌍" },
-];
+type CountryOpt = { code: string; name: string; flag: string };
 
 function CountrySelect() {
+  const { t } = useLang();
+  const countries: readonly CountryOpt[] = t.contact.countries;
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(COUNTRIES[0]);
+  const [selected, setSelected] = useState<CountryOpt>(countries[0]);
 
   return (
     <div className="md:col-span-2 relative">
       <label className="block font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)] mb-2">
-        Страна поставки
+        {t.contact.fields.country.label}
       </label>
       <input type="hidden" name="country" value={selected.code} />
       <button
@@ -252,7 +241,7 @@ function CountrySelect() {
       >
         <span className="flex items-center gap-3">
           <span className="text-[20px] leading-none">{selected.flag}</span>
-          <span className="text-[var(--color-ink)]">{selected.ru}</span>
+          <span className="text-[var(--color-ink)]">{selected.name}</span>
         </span>
         <svg
           width="12"
@@ -289,7 +278,7 @@ function CountrySelect() {
             className="absolute left-0 right-0 top-full mt-1 z-30 bg-[var(--color-bone)] border border-[var(--color-line)] rounded-lg shadow-[0_8px_24px_rgba(18,23,42,0.12)] max-h-[280px] overflow-y-auto overscroll-contain py-1"
             role="listbox"
           >
-            {COUNTRIES.map((c) => (
+            {countries.map((c) => (
               <li key={c.code}>
                 <button
                   type="button"
@@ -304,7 +293,7 @@ function CountrySelect() {
                   )}
                 >
                   <span className="text-[20px] leading-none">{c.flag}</span>
-                  <span className="flex-1">{c.ru}</span>
+                  <span className="flex-1">{c.name}</span>
                   <span className="font-mono text-[10px] text-[var(--color-stone)]">
                     {c.code}
                   </span>
@@ -323,16 +312,14 @@ function Field({
   name,
   type = "text",
   placeholder,
-  className = "",
 }: {
   label: string;
   name: string;
   type?: string;
   placeholder?: string;
-  className?: string;
 }) {
   return (
-    <div className={className}>
+    <div>
       <label
         htmlFor={name}
         className="block font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)] mb-2"

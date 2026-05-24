@@ -2,59 +2,12 @@
 
 import { motion } from "motion/react";
 import { Check } from "lucide-react";
-
-const services = [
-  {
-    n: "01",
-    title: "Оптовая дистрибуция",
-    tag: "Объём · Логистика",
-    body: "Крупные оптовые поставки витаминов, БАДов и спортпита от проверенных производителей США и ЕС.",
-    points: [
-      "Закупка у проверенных фабрик",
-      "Контейнерные и сборные поставки (LCL)",
-      "Полный пакет таможенных документов",
-      "Холодовая цепь при необходимости",
-    ],
-  },
-  {
-    n: "02",
-    title: "Представительство брендов",
-    tag: "Эксклюзив",
-    body: "Официальное представительство ведущих американских и европейских брендов БАДов в вашем регионе.",
-    points: [
-      "Эксклюзивные региональные права",
-      "Подготовка регуляторного досье",
-      "Стратегия листинга в ритейле",
-      "Долгосрочное сопровождение",
-    ],
-  },
-  {
-    n: "03",
-    title: "Private Label",
-    tag: "Создание бренда",
-    body: "Разработка собственных продуктов и брендинговые решения для квалифицированных партнёров.",
-    points: [
-      "Помощь с формулами и рецептурой",
-      "Дизайн бренда и упаковки",
-      "Многоязычные этикетки",
-      "Соответствие требованиям рынка",
-    ],
-  },
-  {
-    n: "04",
-    title: "Запуск на новых рынках",
-    tag: "Стратегия",
-    body: "Полное сопровождение при выходе бренда на новый рынок: регуляторика, документы, таможня.",
-    points: [
-      "Анализ рынка и прогноз спроса",
-      "Поиск локальных партнёров",
-      "Дорожная карта compliance",
-      "Запуск и сопровождение роста",
-    ],
-  },
-];
+import { useLang } from "@/components/ui/lang-provider";
 
 export function Services() {
+  const { t } = useLang();
+  const services = t.services.items;
+
   return (
     <section id="services" className="relative py-16 lg:py-32 bg-[var(--color-paper)]">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
@@ -62,21 +15,21 @@ export function Services() {
           <div>
             <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-soft)]">
               <span className="inline-block h-px w-8 bg-[var(--color-ink)]" />
-              <span>§ 05 — Что мы делаем</span>
+              <span>{t.services.eyebrow}</span>
             </div>
-            <h2 className="mt-6 font-display text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] tracking-[-0.02em] text-balance max-w-[20ch]">
-              Четыре формата{" "}
-              <span className="text-[var(--color-grass)]">сотрудничества</span>
-              .
+            <h2 className="mt-6 font-display text-[32px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-[-0.02em] text-balance max-w-[20ch]">
+              {t.services.headline1}{" "}
+              <span className="text-[var(--color-grass)]">
+                {t.services.headlineHl}
+              </span>
+              {t.services.headline2}
             </h2>
           </div>
           <p className="max-w-sm text-[15px] text-[var(--color-ink-soft)] leading-relaxed">
-            От оптовых заказов до полноценного запуска бренда на рынок. Подбираем
-            формат под ваш масштаб и регуляторику.
+            {t.services.description}
           </p>
         </div>
 
-        {/* 2×2 grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
           {services.map((s, i) => (
             <motion.article

@@ -7,23 +7,23 @@ import { feature } from "topojson-client";
 import type { Feature, FeatureCollection, Geometry } from "geojson";
 import worldTopo from "world-atlas/countries-110m.json";
 import { cn } from "@/lib/utils";
+import { useLang } from "@/components/ui/lang-provider";
 
 type CountryProps = { name: string };
 
-// Активные ГЕО — фокус нашей дистрибуции
-const ACTIVE = {
-  Kazakhstan: { ru: "Казахстан", code: "KZ", capital: "Астана", flag: "🇰🇿" },
-  Uzbekistan: { ru: "Узбекистан", code: "UZ", capital: "Ташкент", flag: "🇺🇿" },
-  Tajikistan: { ru: "Таджикистан", code: "TJ", capital: "Душанбе", flag: "🇹🇯" },
-  Kyrgyzstan: { ru: "Кыргызстан", code: "KG", capital: "Бишкек", flag: "🇰🇬" },
-  Azerbaijan: { ru: "Азербайджан", code: "AZ", capital: "Баку", flag: "🇦🇿" },
-  Georgia: { ru: "Грузия", code: "GE", capital: "Тбилиси", flag: "🇬🇪" },
-  Armenia: { ru: "Армения", code: "AM", capital: "Ереван", flag: "🇦🇲" },
-  Mongolia: { ru: "Монголия", code: "MN", capital: "Улан-Батор", flag: "🇲🇳" },
+const ACTIVE_CODES = {
+  Kazakhstan: { code: "KZ", flag: "🇰🇿" },
+  Uzbekistan: { code: "UZ", flag: "🇺🇿" },
+  Tajikistan: { code: "TJ", flag: "🇹🇯" },
+  Kyrgyzstan: { code: "KG", flag: "🇰🇬" },
+  Azerbaijan: { code: "AZ", flag: "🇦🇿" },
+  Georgia: { code: "GE", flag: "🇬🇪" },
+  Armenia: { code: "AM", flag: "🇦🇲" },
+  Mongolia: { code: "MN", flag: "🇲🇳" },
 } as const;
 
-type ActiveKey = keyof typeof ACTIVE;
-const ACTIVE_KEYS = Object.keys(ACTIVE) as ActiveKey[];
+type ActiveKey = keyof typeof ACTIVE_CODES;
+const ACTIVE_KEYS = Object.keys(ACTIVE_CODES) as ActiveKey[];
 
 // Геоцентры для подписей (lng, lat)
 const LABEL_CENTERS: Record<ActiveKey, [number, number]> = {
@@ -39,6 +39,21 @@ const LABEL_CENTERS: Record<ActiveKey, [number, number]> = {
 
 export function Markets() {
   const [hovered, setHovered] = useState<ActiveKey | null>(null);
+  const { t } = useLang();
+  const ACTIVE = ACTIVE_KEYS.reduce(
+    (acc, k) => {
+      acc[k] = {
+        ...ACTIVE_CODES[k],
+        ru: t.markets.countryNames[k],
+        capital: t.markets.capitals[k],
+      };
+      return acc;
+    },
+    {} as Record<
+      ActiveKey,
+      { code: string; flag: string; ru: string; capital: string }
+    >,
+  );
 
   // topojson → geojson
   const geo = useMemo(() => {
@@ -75,7 +90,7 @@ export function Markets() {
           <div>
             <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-soft)]">
               <span className="inline-block h-px w-8 bg-[var(--color-ink)]" />
-              <span>§ 04 — Где работаем</span>
+              <span>{t.markets.eyebrow}</span>
             </div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -84,15 +99,15 @@ export function Markets() {
               transition={{ duration: 0.7 }}
               className="mt-6 font-display text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] tracking-[-0.02em] text-balance max-w-[22ch]"
             >
-              Работаем в странах, где{" "}
-              <span className="text-[var(--color-grass)]">нужен поставщик</span>
-              .
+              {t.markets.headline1}{" "}
+              <span className="text-[var(--color-grass)]">
+                {t.markets.headlineHl}
+              </span>
+              {t.markets.headline2}
             </motion.h2>
           </div>
           <p className="max-w-sm text-[15px] text-[var(--color-ink-soft)] leading-relaxed">
-            Готовая документация, сертификация и таможенное сопровождение под
-            каждое направление. Никаких разовых отгрузок — только постоянные
-            партнёрства.
+            {t.markets.description}
           </p>
         </div>
 
@@ -234,7 +249,7 @@ export function Markets() {
                     fill="var(--color-ink-soft)"
                     letterSpacing="0.12em"
                   >
-                    АКТИВНЫХ НАПРАВЛЕНИЙ · {ACTIVE_KEYS.length}
+                    {t.markets.legend} · {ACTIVE_KEYS.length}
                   </text>
                 </g>
               </svg>
@@ -251,7 +266,7 @@ export function Markets() {
                       {ACTIVE[hovered].code}
                     </div>
                     <span className="px-2 py-0.5 rounded-full bg-[var(--color-lime)]/15 text-[var(--color-lime)] text-[9px] font-mono uppercase tracking-[0.15em] border border-[var(--color-lime)]/40">
-                      Активно
+                      {t.markets.active}
                     </span>
                   </div>
                   <div className="font-display text-[18px] mt-1.5">
@@ -268,8 +283,8 @@ export function Markets() {
           {/* Country list */}
           <div className="col-span-12 lg:col-span-4 order-2">
             <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)] mb-4 flex items-center justify-between">
-              <span>Активные рынки</span>
-              <span>{ACTIVE_KEYS.length} стран</span>
+              <span>{t.markets.activeMarkets}</span>
+              <span>{ACTIVE_KEYS.length} {t.markets.countries}</span>
             </div>
             <ul className="flex flex-col">
               {ACTIVE_KEYS.map((key) => {
@@ -300,7 +315,7 @@ export function Markets() {
                     <span className="shrink-0 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[var(--color-lime)]/15 border border-[var(--color-lime-deep)]/40 text-[var(--color-lime-deep)]">
                       <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-lime-deep)]" />
                       <span className="font-mono text-[9px] uppercase tracking-[0.16em] font-semibold">
-                        Активно
+                        {t.markets.active}
                       </span>
                     </span>
                   </li>
@@ -312,7 +327,7 @@ export function Markets() {
               href="#contact"
               className="mt-6 inline-flex w-full items-center justify-between gap-3 rounded-full bg-[var(--color-grass)] text-[var(--color-bone)] pl-5 pr-2 py-2.5 text-[13px] tracking-wide hover:bg-[var(--color-grass-deep)] transition-colors"
             >
-              Узнать про поставку
+              {t.markets.ctaCountry}
               <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--color-bone)] text-[var(--color-grass)]">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                   <path

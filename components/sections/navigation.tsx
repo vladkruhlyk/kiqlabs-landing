@@ -4,18 +4,21 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const navLinks = [
-  { href: "#about", label: "О нас" },
-  { href: "#services", label: "Услуги" },
-  { href: "#brands", label: "Бренды" },
-  { href: "#markets", label: "Регионы" },
-  { href: "#contact", label: "Контакты" },
-];
+import { useLang } from "@/components/ui/lang-provider";
+import { LangToggle } from "@/components/ui/lang-toggle";
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { t } = useLang();
+
+  const navLinks = [
+    { href: "#about", label: t.nav.about },
+    { href: "#services", label: t.nav.services },
+    { href: "#brands", label: t.nav.brands },
+    { href: "#markets", label: t.nav.markets },
+    { href: "#contact", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -71,6 +74,7 @@ export function Navigation() {
           </ul>
 
           <div className="flex items-center gap-3">
+            <LangToggle />
             <a
               href="/quiz"
               className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-[12px] tracking-wide text-[var(--color-ink)] hover:text-[var(--color-grass)] transition-colors"
@@ -79,13 +83,13 @@ export function Navigation() {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--color-lime)] opacity-60 animate-ping" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-lime)]" />
               </span>
-              Подобрать · 60 сек
+              {t.nav.quizCta}
             </a>
             <a
               href="#contact"
               className="hidden md:inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] text-[var(--color-bone)] px-4 py-2 text-[12px] tracking-wide hover:bg-[var(--color-grass)] transition-colors"
             >
-              Получить прайс
+              {t.nav.priceCta}
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path
                   d="M2.5 6h7m0 0L6 2.5M9.5 6L6 9.5"

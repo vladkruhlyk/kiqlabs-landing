@@ -1,52 +1,52 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useLang } from "@/components/ui/lang-provider";
 
-const categories = [
-  {
-    name: "Спортивное питание",
-    brands: [
-      "Optimum Nutrition",
-      "BSN",
-      "Dymatize",
-      "Ultimate Nutrition",
-      "BPI Sports",
-      "EVL",
-      "Xtend",
-      "Nutrex",
-      "Mutant",
-      "Inner Armour",
-      "Apollon Nutrition",
-      "Dy Nutrition",
-      "SANN",
-      "Per4m",
-    ],
-  },
-  {
-    name: "Витамины и клинические БАДы",
-    brands: [
-      "NOW Foods",
-      "Solgar",
-      "Swanson Vitamins",
-      "Life Extension",
-      "Source Naturals",
-      "Pure Encapsulations",
-      "Douglas Labs",
-      "Metagenics",
-      "Twinlab",
-      "Doublewood",
-      "Weider",
-      "Nutrend",
-      "Elicore Labs",
-      "OstroVit",
-      "MyProtein",
-    ],
-  },
+const SPORTS_BRANDS = [
+  "Optimum Nutrition",
+  "BSN",
+  "Dymatize",
+  "Ultimate Nutrition",
+  "BPI Sports",
+  "EVL",
+  "Xtend",
+  "Nutrex",
+  "Mutant",
+  "Inner Armour",
+  "Apollon Nutrition",
+  "Dy Nutrition",
+  "SANN",
+  "Per4m",
 ];
 
-const totalBrands = categories.reduce((s, c) => s + c.brands.length, 0);
+const VITAMIN_BRANDS = [
+  "NOW Foods",
+  "Solgar",
+  "Swanson Vitamins",
+  "Life Extension",
+  "Source Naturals",
+  "Pure Encapsulations",
+  "Douglas Labs",
+  "Metagenics",
+  "Twinlab",
+  "Doublewood",
+  "Weider",
+  "Nutrend",
+  "Elicore Labs",
+  "OstroVit",
+  "MyProtein",
+];
+
+const TOTAL = SPORTS_BRANDS.length + VITAMIN_BRANDS.length;
 
 export function Brands() {
+  const { t } = useLang();
+  const categories = [
+    { name: t.brands.categories[0].name, brands: SPORTS_BRANDS },
+    { name: t.brands.categories[1].name, brands: VITAMIN_BRANDS },
+  ];
+
   return (
     <section
       id="brands"
@@ -57,7 +57,7 @@ export function Brands() {
           <div>
             <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-stone-soft)]">
               <span className="inline-block h-px w-8 bg-[var(--color-bone)]" />
-              <span>§ 06 — Бренды</span>
+              <span>{t.brands.eyebrow}</span>
             </div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -66,19 +66,18 @@ export function Brands() {
               transition={{ duration: 0.7 }}
               className="mt-6 font-display text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] tracking-[-0.02em] text-balance max-w-[22ch]"
             >
-              {totalBrands}+ брендов, которые{" "}
-              <span className="text-[var(--color-lime)]">уже продаются</span> в
-              вашем регионе.
+              {TOTAL}+ {t.brands.headline1}{" "}
+              <span className="text-[var(--color-lime)]">
+                {t.brands.headlineHl}
+              </span>{" "}
+              {t.brands.headline2}
             </motion.h2>
           </div>
           <p className="max-w-sm text-[15px] text-[var(--color-stone-soft)] leading-relaxed">
-            Кураторский портфель производителей-лидеров. Все верифицированы у
-            источника: аудит, сертификат анализа, готовая импортная
-            документация.
+            {t.brands.description}
           </p>
         </div>
 
-        {/* Categories with brand chips */}
         <div className="space-y-10 lg:space-y-14">
           {categories.map((cat, ci) => (
             <motion.div
@@ -98,7 +97,7 @@ export function Brands() {
                   </h3>
                 </div>
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-stone-soft)]">
-                  {cat.brands.length} брендов
+                  {cat.brands.length} {t.brands.brandsLabel}
                 </span>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -115,19 +114,17 @@ export function Brands() {
           ))}
         </div>
 
-        {/* CTA bottom */}
         <div className="mt-14 lg:mt-20 pt-8 border-t border-[var(--color-stone)]/25 flex flex-wrap items-center justify-between gap-6">
           <div className="max-w-md">
             <p className="text-[14px] text-[var(--color-stone-soft)] leading-relaxed">
-              Не нашли нужный бренд? У нас есть доступ ко всему ассортименту
-              США и ЕС — закажем под ваш запрос.
+              {t.brands.catalogNote}
             </p>
           </div>
           <a
             href="#contact"
             className="group inline-flex items-center justify-between gap-3 rounded-full bg-[var(--color-lime)] text-[var(--color-bone)] pl-5 pr-2 py-2.5 text-[13px] font-semibold tracking-wide hover:bg-[var(--color-lime-soft)] transition-colors"
           >
-            Запросить полный каталог
+            {t.brands.catalogCta}
             <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--color-ink)] text-[var(--color-lime)] transition-transform group-hover:translate-x-0.5">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path
