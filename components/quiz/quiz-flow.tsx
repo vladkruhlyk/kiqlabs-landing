@@ -41,6 +41,7 @@ const COUNTRY_FLAGS: Record<string, string> = {
   GE: "🇬🇪",
   AM: "🇦🇲",
   MN: "🇲🇳",
+  AE: "🇦🇪",
   OT: "🌍",
 };
 
@@ -62,7 +63,7 @@ const CATEGORY_ICONS = {
 const TOTAL_STEPS = 5;
 
 export function QuizFlow() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [started, setStarted] = useState(false);
   const [step, setStep] = useState(0); // 0..4 = quiz, 5 = thanks
   const [direction, setDirection] = useState(1);
@@ -155,7 +156,11 @@ export function QuizFlow() {
       {/* Header */}
       <header className="relative z-10 px-6 lg:px-10 pt-6 lg:pt-8">
         <div className="mx-auto max-w-[1080px] flex items-center justify-between gap-4">
-          <a href="/" className="group flex items-center" aria-label="KIQ Labs">
+          <a
+            href={lang === "en" ? "/en" : "/"}
+            className="group flex items-center"
+            aria-label="KIQ Labs"
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/media/logo.webp"
@@ -581,7 +586,7 @@ function QField({
 }
 
 function ThankYou({ answers }: { answers: Answers }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const title = answers.name
     ? t.quiz.thanks.thanksName.replace("{name}", answers.name)
     : `${t.quiz.thanks.title}!`;
@@ -624,7 +629,7 @@ function ThankYou({ answers }: { answers: Answers }) {
       </div>
 
       <a
-        href="/"
+        href={lang === "en" ? "/en" : "/"}
         className="mt-8 inline-block font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-stone-soft)] hover:text-[var(--color-bone)] transition-colors"
       >
         {t.quiz.thanks.backToSite}
@@ -642,7 +647,7 @@ const INTRO_BOTTLES = [
 ];
 
 function Intro({ onStart }: { onStart: () => void }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
     <main className="relative min-h-screen bg-[var(--color-ink)] text-[var(--color-bone)] overflow-hidden">
       {/* Backgrounds */}
@@ -669,7 +674,11 @@ function Intro({ onStart }: { onStart: () => void }) {
       {/* Header */}
       <header className="relative z-10 px-6 lg:px-10 pt-6 lg:pt-8">
         <div className="mx-auto max-w-[1240px] flex items-center justify-between gap-4">
-          <a href="/" className="group flex items-center" aria-label="KIQ Labs">
+          <a
+            href={lang === "en" ? "/en" : "/"}
+            className="group flex items-center"
+            aria-label="KIQ Labs"
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/media/logo.webp"
@@ -688,7 +697,7 @@ function Intro({ onStart }: { onStart: () => void }) {
           <div className="flex items-center gap-3">
             <LangToggle inverted />
             <a
-              href="/"
+              href={lang === "en" ? "/en" : "/"}
               className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-stone-soft)] hover:text-[var(--color-bone)] transition-colors"
             >
               {t.quiz.intro.backToSite}

@@ -1,11 +1,12 @@
 "use client";
 
+import { usePathname, useRouter } from "next/navigation";
 import {
   createContext,
   useCallback,
   useContext,
   useEffect,
-  useState,
+  useMemo,
 } from "react";
 import { dict, type Dictionary, type Lang } from "@/lib/i18n";
 
@@ -17,40 +18,40 @@ type Ctx = {
 
 const LangCtx = createContext<Ctx | null>(null);
 
-const STORAGE_KEY = "kiq-lang";
+function detectLang(pathname: string): Lang {
+  return pathname.startsWith("/en") ? "en" : "ru";
+}
 
 export function LangProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("ru");
+  const pathname = usePathname() || "/";
+  const router = useRouter();
+  const lang = detectLang(pathname);
 
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY) as Lang | null;
-    if (saved === "ru" || saved === "en") {
-      setLangState(saved);
-      document.documentElement.lang = saved;
-      return;
-    }
-    // Fallback: browser language
-    const browserLang = navigator.language?.toLowerCase() || "";
-    if (browserLang.startsWith("ru")) {
-      setLangState("ru");
-      document.documentElement.lang = "ru";
-    } else {
-      setLangState("en");
-      document.documentElement.lang = "en";
-    }
-  }, []);
+    document.documentElement.lang = lang;
+  }, [lang]);
 
-  const setLang = useCallback((l: Lang) => {
-    setLangState(l);
-    localStorage.setItem(STORAGE_KEY, l);
-    document.documentElement.lang = l;
-  }, []);
-
-  return (
-    <LangCtx.Provider value={{ lang, setLang, t: dict[lang] }}>
-      {children}
-    </LangCtx.Provider>
+  const setLang = useCallback(
+    (l: Lang) => {
+      // Strip /en prefix and rebuild path for target locale
+      const stripped = pathname.replace(/^\/en(\/|$)/, "/");
+      const next =
+        l === "en"
+          ? stripped === "/"
+            ? "/en"
+            : `/en${stripped}`
+          : stripped;
+      router.push(next);
+    },
+    [pathname, router],
   );
+
+  const value = useMemo(
+    () => ({ lang, setLang, t: dict[lang] }),
+    [lang, setLang],
+  );
+
+  return <LangCtx.Provider value={value}>{children}</LangCtx.Provider>;
 }
 
 export function useLang() {

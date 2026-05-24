@@ -225,7 +225,9 @@ function CountrySelect() {
   const { t } = useLang();
   const countries: readonly CountryOpt[] = t.contact.countries;
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<CountryOpt>(countries[0]);
+  const [selectedCode, setSelectedCode] = useState<string>(countries[0].code);
+  const selected =
+    countries.find((c) => c.code === selectedCode) ?? countries[0];
 
   return (
     <div className="md:col-span-2 relative">
@@ -283,7 +285,7 @@ function CountrySelect() {
                 <button
                   type="button"
                   onClick={() => {
-                    setSelected(c);
+                    setSelectedCode(c.code);
                     setOpen(false);
                   }}
                   className={cn(

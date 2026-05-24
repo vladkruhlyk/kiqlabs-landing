@@ -20,6 +20,7 @@ const ACTIVE_CODES = {
   Georgia: { code: "GE", flag: "🇬🇪" },
   Armenia: { code: "AM", flag: "🇦🇲" },
   Mongolia: { code: "MN", flag: "🇲🇳" },
+  "United Arab Emirates": { code: "AE", flag: "🇦🇪" },
 } as const;
 
 type ActiveKey = keyof typeof ACTIVE_CODES;
@@ -35,6 +36,7 @@ const LABEL_CENTERS: Record<ActiveKey, [number, number]> = {
   Georgia: [43.3, 42],
   Armenia: [45, 40],
   Mongolia: [103, 47],
+  "United Arab Emirates": [54, 24],
 };
 
 export function Markets() {

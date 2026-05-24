@@ -31,7 +31,7 @@ export const dict = {
       tagDiscount: "цена",
       tagGmp: "GMP · proof of analysis",
       stats: [
-        { value: "8", label: "стран в фокусе (СНГ)" },
+        { value: "9", label: "стран в фокусе" },
         { value: "до −35%", label: "к закупочной цене" },
         { value: "14 дней", label: "средний срок поставки" },
       ],
@@ -140,6 +140,7 @@ export const dict = {
         Georgia: "Грузия",
         Armenia: "Армения",
         Mongolia: "Монголия",
+        "United Arab Emirates": "ОАЭ",
       },
       capitals: {
         Kazakhstan: "Астана",
@@ -150,6 +151,7 @@ export const dict = {
         Georgia: "Тбилиси",
         Armenia: "Ереван",
         Mongolia: "Улан-Батор",
+        "United Arab Emirates": "Абу-Даби",
       },
     },
     services: {
@@ -312,6 +314,7 @@ export const dict = {
         { code: "GE", name: "Грузия", flag: "🇬🇪" },
         { code: "AM", name: "Армения", flag: "🇦🇲" },
         { code: "MN", name: "Монголия", flag: "🇲🇳" },
+        { code: "AE", name: "ОАЭ", flag: "🇦🇪" },
         { code: "OT", name: "Другая страна", flag: "🌍" },
       ],
     },
@@ -415,6 +418,7 @@ export const dict = {
           GE: "Грузия",
           AM: "Армения",
           MN: "Монголия",
+          AE: "ОАЭ",
           OT: "Другая страна",
         },
       },
@@ -498,7 +502,7 @@ export const dict = {
       tagDiscount: "price",
       tagGmp: "GMP · proof of analysis",
       stats: [
-        { value: "8", label: "focus markets (CIS)" },
+        { value: "9", label: "focus markets" },
         { value: "up to −35%", label: "off purchase price" },
         { value: "14 days", label: "average lead time" },
       ],
@@ -607,6 +611,7 @@ export const dict = {
         Georgia: "Georgia",
         Armenia: "Armenia",
         Mongolia: "Mongolia",
+        "United Arab Emirates": "UAE",
       },
       capitals: {
         Kazakhstan: "Astana",
@@ -617,6 +622,7 @@ export const dict = {
         Georgia: "Tbilisi",
         Armenia: "Yerevan",
         Mongolia: "Ulaanbaatar",
+        "United Arab Emirates": "Abu Dhabi",
       },
     },
     services: {
@@ -779,6 +785,7 @@ export const dict = {
         { code: "GE", name: "Georgia", flag: "🇬🇪" },
         { code: "AM", name: "Armenia", flag: "🇦🇲" },
         { code: "MN", name: "Mongolia", flag: "🇲🇳" },
+        { code: "AE", name: "UAE", flag: "🇦🇪" },
         { code: "OT", name: "Other country", flag: "🌍" },
       ],
     },
@@ -885,6 +892,7 @@ export const dict = {
           GE: "Georgia",
           AM: "Armenia",
           MN: "Mongolia",
+          AE: "UAE",
           OT: "Other country",
         },
       },

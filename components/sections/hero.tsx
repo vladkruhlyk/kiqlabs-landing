@@ -195,7 +195,7 @@ function Bottle({
 }
 
 export function Hero() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const stats = t.hero.stats;
   return (
     <section
@@ -314,7 +314,7 @@ export function Hero() {
                 </span>
               </a>
               <a
-                href="/quiz"
+                href={lang === "en" ? "/en/quiz" : "/quiz"}
                 className="group inline-flex items-center gap-2 text-[13px] text-[var(--color-ink)] underline underline-offset-[6px] decoration-[var(--color-line)] hover:decoration-[var(--color-ink)] transition-colors px-2 py-2"
               >
                 <span className="relative inline-flex h-1.5 w-1.5 mr-1">

@@ -10,7 +10,7 @@ import { LangToggle } from "@/components/ui/lang-toggle";
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const { t } = useLang();
+  const { t, lang } = useLang();
 
   const navLinks = [
     { href: "#about", label: t.nav.about },
@@ -76,7 +76,7 @@ export function Navigation() {
           <div className="flex items-center gap-3">
             <LangToggle />
             <a
-              href="/quiz"
+              href={lang === "en" ? "/en/quiz" : "/quiz"}
               className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-[12px] tracking-wide text-[var(--color-ink)] hover:text-[var(--color-grass)] transition-colors"
             >
               <span className="relative inline-flex h-1.5 w-1.5">
