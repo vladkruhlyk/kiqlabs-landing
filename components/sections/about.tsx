@@ -25,13 +25,6 @@ const benefits = [
   },
 ];
 
-const facts = [
-  { k: "Основана", v: "2020" },
-  { k: "Модель", v: "Только B2B" },
-  { k: "Закупка", v: "США · ЕС" },
-  { k: "География", v: "СНГ" },
-];
-
 export function About() {
   return (
     <section id="about" className="relative py-16 lg:py-32">
@@ -89,19 +82,6 @@ export function About() {
           ))}
         </div>
 
-        {/* Facts strip */}
-        <div className="mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6 border-t border-[var(--color-line)] pt-10">
-          {facts.map((d) => (
-            <div key={d.k}>
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-stone)]">
-                {d.k}
-              </div>
-              <div className="mt-2 font-display text-[22px] lg:text-[28px] leading-none">
-                {d.v}
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

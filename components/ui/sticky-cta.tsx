@@ -72,7 +72,7 @@ export function StickyCTA() {
 
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 sm:gap-3 rounded-full bg-[var(--color-lime)] text-[var(--color-ink)] px-4 sm:px-5 py-2 text-[12px] sm:text-[13px] font-semibold tracking-wide hover:bg-[var(--color-lime-soft)] transition-colors"
+              className="inline-flex items-center gap-2 sm:gap-3 rounded-full bg-[var(--color-lime)] text-[var(--color-bone)] px-4 sm:px-5 py-2 text-[12px] sm:text-[13px] font-semibold tracking-wide hover:bg-[var(--color-lime-soft)] transition-colors"
             >
               <span className="hidden sm:inline">Запросить B2B-прайс</span>
               <span className="sm:hidden">B2B-прайс</span>

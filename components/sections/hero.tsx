@@ -34,14 +34,14 @@ const bottles = [
 
 function FloatingBottles() {
   return (
-    <div className="relative h-[340px] sm:h-[440px] lg:h-[540px] pointer-events-none">
+    <div className="relative h-[300px] sm:h-[400px] lg:h-[540px] pointer-events-none -mx-2 sm:mx-0">
       {/* Background flourishes */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(50% 50% at 50% 50%, rgba(199,236,63,0.18), transparent 70%)",
+            "radial-gradient(50% 50% at 50% 50%, rgba(59,130,246,0.20), transparent 70%)",
         }}
       />
       <svg
@@ -102,7 +102,7 @@ function FloatingBottles() {
         transition={{ duration: 0.6, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
         className="absolute top-[14%] right-[2%] z-40 hidden sm:block"
       >
-        <div className="rounded-full bg-[var(--color-lime)] text-[var(--color-ink)] px-3.5 py-1.5 shadow-[0_6px_20px_rgba(199,236,63,0.45)] border border-[var(--color-ink)]">
+        <div className="rounded-full bg-[var(--color-lime)] text-[var(--color-bone)] px-3.5 py-1.5 shadow-[0_8px_24px_rgba(59,130,246,0.45)]">
           <div className="flex items-baseline gap-2">
             <span className="font-mono text-[9px] uppercase tracking-[0.15em] opacity-80">
               цена
@@ -244,7 +244,7 @@ export function Hero() {
         <div className="mt-8 lg:mt-12 grid grid-cols-12 gap-6 lg:gap-8 items-center">
           {/* Left column: headline + description + CTAs */}
           <div className="col-span-12 lg:col-span-6 xl:col-span-5 flex flex-col">
-            <h1 className="font-display text-balance text-[36px] sm:text-[48px] md:text-[56px] lg:text-[56px] xl:text-[68px] leading-[1] tracking-[-0.02em]">
+            <h1 className="font-display text-balance text-[32px] sm:text-[44px] md:text-[52px] lg:text-[56px] xl:text-[68px] leading-[1.02] tracking-[-0.02em]">
               <Reveal>
                 <span className="block">Витамины</span>
               </Reveal>
@@ -260,7 +260,7 @@ export function Hero() {
                 <span className="block">
                   из США{" "}
                   <span className="inline-flex items-center align-middle mx-1 lg:mx-2">
-                    <span className="inline-grid place-items-center h-[0.75em] w-[0.75em] rounded-full bg-[var(--color-lime)] text-[var(--color-ink)]">
+                    <span className="inline-grid place-items-center h-[0.75em] w-[0.75em] rounded-full bg-[var(--color-lime)] text-[var(--color-bone)]">
                       <svg
                         width="0.45em"
                         height="0.45em"
@@ -303,7 +303,7 @@ export function Hero() {
                 className="group inline-flex items-center gap-3 rounded-full bg-[var(--color-ink)] text-[var(--color-bone)] pl-5 pr-2 py-2 text-[13px] font-semibold tracking-wide hover:bg-[var(--color-grass)] transition-colors"
               >
                 Запросить B2B-прайс
-                <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--color-lime)] text-[var(--color-ink)] transition-transform group-hover:translate-x-0.5">
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--color-lime)] text-[var(--color-bone)] transition-transform group-hover:translate-x-0.5">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                     <path
                       d="M2.5 6h7m0 0L6 2.5M9.5 6L6 9.5"
@@ -315,10 +315,14 @@ export function Hero() {
                 </span>
               </a>
               <a
-                href="#brands"
-                className="inline-flex items-center gap-2 text-[13px] text-[var(--color-ink)] underline underline-offset-[6px] decoration-[var(--color-line)] hover:decoration-[var(--color-ink)] transition-colors px-2 py-2"
+                href="/quiz"
+                className="group inline-flex items-center gap-2 text-[13px] text-[var(--color-ink)] underline underline-offset-[6px] decoration-[var(--color-line)] hover:decoration-[var(--color-ink)] transition-colors px-2 py-2"
               >
-                Посмотреть бренды
+                <span className="relative inline-flex h-1.5 w-1.5 mr-1">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--color-lime)] opacity-60 animate-ping" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-lime)]" />
+                </span>
+                Подобрать через опрос — 60 сек
               </a>
             </motion.div>
           </div>
@@ -335,32 +339,23 @@ export function Hero() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="mt-12 lg:mt-20 border-y border-[var(--color-line)] py-5 lg:py-8 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 lg:gap-10"
+          className="mt-12 lg:mt-20 border-y border-[var(--color-line)] py-5 lg:py-8 grid grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-6 lg:gap-10"
         >
           {stats.map((s, i) => (
             <div key={s.label} className="lg:col-span-2">
-              <div className="flex items-baseline gap-3">
-                <span className="font-mono text-[10px] text-[var(--color-stone)] tabular-nums">
+              <div className="flex items-baseline gap-2 sm:gap-3">
+                <span className="hidden sm:inline font-mono text-[10px] text-[var(--color-stone)] tabular-nums">
                   0{i + 1}
                 </span>
-                <div className="font-display text-[32px] sm:text-[36px] lg:text-[48px] leading-none tabular-nums">
+                <div className="font-display text-[22px] sm:text-[32px] lg:text-[48px] leading-none tabular-nums">
                   {s.value}
                 </div>
               </div>
-              <div className="mt-2 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-soft)]">
+              <div className="mt-1.5 sm:mt-2 font-mono text-[9px] sm:text-[11px] uppercase tracking-[0.16em] text-[var(--color-ink-soft)] leading-tight">
                 {s.label}
               </div>
             </div>
           ))}
-          <div className="hidden lg:block lg:col-span-2 self-end justify-self-end">
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-stone)]">
-              Скролл
-            </div>
-            <div className="mt-2 flex items-center gap-2 font-mono text-[11px]">
-              <span className="inline-block h-px w-10 bg-[var(--color-ink)]" />
-              листайте ниже
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>

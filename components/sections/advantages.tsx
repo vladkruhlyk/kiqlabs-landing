@@ -79,7 +79,7 @@ export function Advantages() {
                   <div
                     className={
                       isFeatured
-                        ? "grid h-10 w-10 place-items-center rounded-xl bg-[var(--color-lime)] text-[var(--color-ink)]"
+                        ? "grid h-10 w-10 place-items-center rounded-xl bg-[var(--color-lime)] text-[var(--color-bone)]"
                         : "grid h-10 w-10 place-items-center rounded-xl bg-[var(--color-grass)]/10 text-[var(--color-grass)]"
                     }
                   >

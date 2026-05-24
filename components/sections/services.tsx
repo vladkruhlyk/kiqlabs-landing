@@ -64,7 +64,7 @@ export function Services() {
               <span className="inline-block h-px w-8 bg-[var(--color-ink)]" />
               <span>§ 05 — Что мы делаем</span>
             </div>
-            <h2 className="mt-6 font-display text-[32px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-[-0.02em] text-balance max-w-[20ch]">
+            <h2 className="mt-6 font-display text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] tracking-[-0.02em] text-balance max-w-[20ch]">
               Четыре формата{" "}
               <span className="text-[var(--color-grass)]">сотрудничества</span>
               .

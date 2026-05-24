@@ -16,7 +16,7 @@ export function Footer() {
         <div className="mx-auto max-w-[1440px]">
           <h2 className="font-display leading-[0.88] tracking-[-0.04em] text-[22vw] sm:text-[18vw] lg:text-[16vw]">
             KIQ Labs
-            <span className="text-[var(--color-lime)]">.</span>
+            <span className="text-[var(--color-lime-soft)]">.</span>
           </h2>
         </div>
       </motion.div>

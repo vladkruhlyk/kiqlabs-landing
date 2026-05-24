@@ -22,7 +22,7 @@ export function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.9 }}
-              className="mt-6 font-display text-[36px] sm:text-[52px] lg:text-[68px] leading-[1.02] tracking-[-0.025em] text-balance"
+              className="mt-6 font-display text-[28px] sm:text-[40px] md:text-[52px] lg:text-[60px] leading-[1.1] tracking-[-0.025em] text-balance"
             >
               Получите B2B-прайс{" "}
               <span className="font-display text-[var(--color-grass)]">
@@ -35,14 +35,14 @@ export function Contact() {
               SKU, рассчитаем логистику и оформим документы под ваш рынок.
             </p>
 
-            <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-[var(--color-line)] pt-8">
+            <div className="mt-10 lg:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 border-t border-[var(--color-line)] pt-8">
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)]">
                   Телефон
                 </div>
                 <a
                   href="tel:+13126817103"
-                  className="mt-2 block font-display text-[22px] leading-tight"
+                  className="mt-2 block font-display text-[18px] sm:text-[20px] lg:text-[22px] leading-tight break-all"
                 >
                   +1 (312) 681‑7103
                 </a>
@@ -53,7 +53,7 @@ export function Contact() {
                 </div>
                 <a
                   href="mailto:info@kiqlabs.global"
-                  className="mt-2 block font-display text-[22px] leading-tight"
+                  className="mt-2 block font-display text-[18px] sm:text-[20px] lg:text-[22px] leading-tight break-all"
                 >
                   info@kiqlabs.global
                 </a>
@@ -62,17 +62,15 @@ export function Contact() {
                 <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)]">
                   Главный офис
                 </div>
-                <div className="mt-2 font-display text-[22px] leading-tight">
-                  Чикаго, IL
-                  <br />
-                  США
+                <div className="mt-2 font-display text-[18px] sm:text-[20px] lg:text-[22px] leading-tight">
+                  Чикаго, IL · США
                 </div>
               </div>
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)]">
                   Каналы связи
                 </div>
-                <div className="mt-2 flex flex-wrap gap-2 font-mono text-[11px]">
+                <div className="mt-2 flex flex-wrap gap-1.5 font-mono text-[10px]">
                   {["Telegram", "WhatsApp", "LinkedIn", "Instagram"].map((s) => (
                     <span
                       key={s}
@@ -198,7 +196,7 @@ export function Contact() {
                     className="group inline-flex items-center gap-3 rounded-full bg-[var(--color-ink)] text-[var(--color-bone)] pl-6 pr-2 py-2.5 text-[13px] font-semibold tracking-wide hover:bg-[var(--color-grass)] transition-colors"
                   >
                     Получить B2B-прайс
-                    <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--color-lime)] text-[var(--color-ink)] transition-transform group-hover:translate-x-0.5">
+                    <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--color-lime)] text-[var(--color-bone)] transition-transform group-hover:translate-x-0.5">
                       <svg
                         width="12"
                         height="12"

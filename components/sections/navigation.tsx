@@ -38,14 +38,20 @@ export function Navigation() {
         )}
       >
         <nav className="mx-auto flex max-w-[1440px] items-center justify-between px-6 lg:px-10 h-16 lg:h-20">
-          <a href="#top" className="group flex items-center gap-2">
-            <span className="grid h-7 w-7 place-items-center rounded-full bg-[var(--color-grass)] text-[var(--color-bone)] font-display italic text-[15px] leading-none">
-              K
-            </span>
-            <span className="font-display text-[19px] tracking-tight leading-none">
-              KIQ Labs
-              <span className="text-[var(--color-lime-deep)]">.</span>
-            </span>
+          <a href="#top" className="group flex items-center" aria-label="KIQ Labs Global">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/media/logo.webp"
+              alt="KIQ Labs Global"
+              className="h-9 lg:h-10 w-auto select-none mix-blend-darken"
+              style={{
+                maskImage:
+                  "radial-gradient(ellipse 75% 80% at 50% 50%, black 55%, transparent 95%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 75% 80% at 50% 50%, black 55%, transparent 95%)",
+              }}
+              draggable={false}
+            />
           </a>
 
           <ul className="hidden lg:flex items-center gap-1">
@@ -66,10 +72,14 @@ export function Navigation() {
 
           <div className="flex items-center gap-3">
             <a
-              href="tel:+13126817103"
-              className="hidden md:inline-block font-mono text-[11px] tracking-wide text-[var(--color-ink-soft)] hover:text-[var(--color-ink)] transition-colors"
+              href="/quiz"
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-[12px] tracking-wide text-[var(--color-ink)] hover:text-[var(--color-grass)] transition-colors"
             >
-              +1 (312) 681‑7103
+              <span className="relative inline-flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--color-lime)] opacity-60 animate-ping" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-lime)]" />
+              </span>
+              Подобрать · 60 сек
             </a>
             <a
               href="#contact"

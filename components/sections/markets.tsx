@@ -82,7 +82,7 @@ export function Markets() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7 }}
-              className="mt-6 font-display text-[36px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-[-0.02em] text-balance max-w-[22ch]"
+              className="mt-6 font-display text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] tracking-[-0.02em] text-balance max-w-[22ch]"
             >
               Работаем в странах, где{" "}
               <span className="text-[var(--color-grass)]">нужен поставщик</span>
@@ -99,11 +99,12 @@ export function Markets() {
         {/* Map + List */}
         <div className="grid grid-cols-12 gap-6 lg:gap-10">
           {/* Map */}
-          <div className="col-span-12 lg:col-span-8 order-2 lg:order-1">
-            <div className="relative bg-[var(--color-bone)] border border-[var(--color-line)] rounded-2xl overflow-hidden min-h-[280px]">
+          <div className="col-span-12 lg:col-span-8 order-1">
+            <div className="relative bg-[var(--color-bone)] border border-[var(--color-line)] rounded-2xl overflow-hidden">
               <svg
                 viewBox={`0 0 ${width} ${height}`}
-                className="w-full h-auto block"
+                preserveAspectRatio="xMidYMid slice"
+                className="w-full h-[280px] sm:h-[360px] lg:h-auto block"
                 aria-label="Карта активных рынков KIQ Labs"
               >
                 <defs>
@@ -136,7 +137,7 @@ export function Markets() {
                           active
                             ? isHovered
                               ? "var(--color-lime)"
-                              : "rgba(199, 236, 63, 0.18)"
+                              : "rgba(59, 130, 246, 0.18)"
                             : "transparent"
                         }
                         stroke={
@@ -265,7 +266,7 @@ export function Markets() {
           </div>
 
           {/* Country list */}
-          <div className="col-span-12 lg:col-span-4 order-1 lg:order-2">
+          <div className="col-span-12 lg:col-span-4 order-2">
             <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-stone)] mb-4 flex items-center justify-between">
               <span>Активные рынки</span>
               <span>{ACTIVE_KEYS.length} стран</span>

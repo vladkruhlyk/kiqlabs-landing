@@ -57,7 +57,7 @@ export function Comparison() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7 }}
-              className="mt-6 font-display text-[36px] sm:text-[48px] lg:text-[60px] leading-[1.02] tracking-[-0.02em] text-balance max-w-[18ch]"
+              className="mt-6 font-display text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] tracking-[-0.02em] text-balance max-w-[18ch]"
             >
               Почему{" "}
               <span className="text-[var(--color-grass)]">с KIQ дешевле</span>,

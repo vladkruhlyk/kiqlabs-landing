@@ -10,9 +10,9 @@
   --color-grass: #1348c2;
   --color-grass-deep: #0c2e80;
   --color-moss: #192f5d;
-  --color-lime: #c7ec3f;
-  --color-lime-soft: #d6f258;
-  --color-lime-deep: #8db520;
+  --color-lime: #3b82f6;
+  --color-lime-soft: #60a5fa;
+  --color-lime-deep: #2563eb;
   --color-stone: #6b7280;
   --color-stone-soft: #c5cbd6;
   --color-line: #e6eaf0;
@@ -47,7 +47,7 @@
     font-feature-settings: "ss01", "ss02";
     background:
       radial-gradient(1200px 600px at 10% -10%, rgba(19, 72, 194, 0.06), transparent 60%),
-      radial-gradient(900px 500px at 100% 0%, rgba(199, 236, 63, 0.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(59, 130, 246, 0.08), transparent 60%),
       var(--color-bone);
     background-attachment: fixed;
     color: var(--color-ink);
