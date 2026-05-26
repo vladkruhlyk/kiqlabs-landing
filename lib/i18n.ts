@@ -230,7 +230,7 @@ export const dict = {
     },
     advantages: {
       eyebrow: "§ 08 · Почему мы",
-      headline1: "Пять причин, почему",
+      headline1: "Три причины, почему",
       headlineHl: "с нами выгоднее",
       headline2: ".",
       description:
@@ -248,16 +248,6 @@ export const dict = {
         },
         {
           n: "03",
-          title: "B2B-логистика",
-          body: "Контейнерная логистика с консолидацией, холодовой цепью и онлайн-отслеживанием отгрузок.",
-        },
-        {
-          n: "04",
-          title: "Документы и compliance",
-          body: "Полные регуляторные досье, сертификаты анализа, халяль/кошер и готовая импортная документация.",
-        },
-        {
-          n: "05",
           title: "Долгосрочные партнёрства",
           body: "Инвестируем в многолетние отношения, эксклюзивные права, совместное планирование и развитие рынка.",
         },
@@ -701,7 +691,7 @@ export const dict = {
     },
     advantages: {
       eyebrow: "§ 08 · Why us",
-      headline1: "Five reasons",
+      headline1: "Three reasons",
       headlineHl: "we're cheaper to use",
       headline2: ".",
       description:
@@ -719,16 +709,6 @@ export const dict = {
         },
         {
           n: "03",
-          title: "B2B logistics",
-          body: "Container-grade logistics with consolidation, cold chain and live shipment tracking.",
-        },
-        {
-          n: "04",
-          title: "Docs & compliance",
-          body: "Full regulatory dossiers, certificates of analysis, halal/kosher and ready import paperwork.",
-        },
-        {
-          n: "05",
           title: "Long-term partnerships",
           body: "We invest in multi-year relationships, exclusive rights, joint planning and market development.",
         },

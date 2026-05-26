@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ShieldCheck, Boxes, Truck, FileCheck, Handshake } from "lucide-react";
+import { ShieldCheck, Boxes, Handshake } from "lucide-react";
 import { useLang } from "@/components/ui/lang-provider";
 
-const ICONS = [ShieldCheck, Boxes, Truck, FileCheck, Handshake];
+const ICONS = [ShieldCheck, Boxes, Handshake];
 
 export function Advantages() {
   const { t } = useLang();
@@ -35,7 +35,6 @@ export function Advantages() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
           {advantages.map((a, i) => {
             const Icon = ICONS[i];
-            const isFeatured = i === 0;
             return (
               <motion.article
                 key={a.n}
@@ -43,48 +42,20 @@ export function Advantages() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.06 }}
-                className={
-                  isFeatured
-                    ? "sm:col-span-2 bg-[var(--color-ink)] text-[var(--color-bone)] rounded-2xl p-6 lg:p-8 flex flex-col"
-                    : "bg-[var(--color-bone)] border border-[var(--color-line)] rounded-2xl p-6 lg:p-8 flex flex-col"
-                }
+                className="bg-[var(--color-bone)] border border-[var(--color-line)] rounded-2xl p-6 lg:p-8 flex flex-col"
               >
                 <div className="flex items-center justify-between mb-5">
-                  <div
-                    className={
-                      isFeatured
-                        ? "grid h-10 w-10 place-items-center rounded-xl bg-[var(--color-lime)] text-[var(--color-bone)]"
-                        : "grid h-10 w-10 place-items-center rounded-xl bg-[var(--color-grass)]/10 text-[var(--color-grass)]"
-                    }
-                  >
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-[var(--color-grass)]/10 text-[var(--color-grass)]">
                     <Icon size={18} strokeWidth={2} />
                   </div>
-                  <span
-                    className={
-                      isFeatured
-                        ? "font-mono text-[11px] tabular-nums text-[var(--color-stone-soft)]"
-                        : "font-mono text-[11px] tabular-nums text-[var(--color-stone)]"
-                    }
-                  >
+                  <span className="font-mono text-[11px] tabular-nums text-[var(--color-stone)]">
                     {a.n}
                   </span>
                 </div>
-                <h3
-                  className={`font-display leading-[1.1] tracking-[-0.015em] ${
-                    isFeatured
-                      ? "text-[24px] lg:text-[30px]"
-                      : "text-[20px] lg:text-[24px]"
-                  }`}
-                >
+                <h3 className="font-display leading-[1.1] tracking-[-0.015em] text-[20px] lg:text-[24px]">
                   {a.title}
                 </h3>
-                <p
-                  className={`mt-3 text-[13px] lg:text-[14px] leading-relaxed ${
-                    isFeatured
-                      ? "text-[var(--color-stone-soft)]"
-                      : "text-[var(--color-ink-soft)]"
-                  }`}
-                >
+                <p className="mt-3 text-[13px] lg:text-[14px] leading-relaxed text-[var(--color-ink-soft)]">
                   {a.body}
                 </p>
               </motion.article>
