@@ -26,7 +26,7 @@ export const dict = {
       description2:
         ", готовые документы под Центральную Азию и Кавказ, отгрузка от 14 дней.",
       ctaPrice: "Запросить B2B-прайс",
-      ctaQuiz: "Подобрать через опрос — 60 сек",
+      ctaQuiz: "Подобрать через опрос, 60 сек",
       tagDirect: "Прямые контракты",
       tagDiscount: "цена",
       tagGmp: "GMP · proof of analysis",
@@ -40,11 +40,11 @@ export const dict = {
       bottleCardTitleHl: "Без посредников.",
     },
     about: {
-      eyebrow: "§ 02 — О нас",
-      headline1: "Закупаем у производителя — продаём",
+      eyebrow: "§ 02 · О нас",
+      headline1: "Закупаем у производителя, продаём",
       headlineHl: "без посредников",
       description:
-        "KIQ Labs — B2B-дистрибьютор с прямыми контрактами на заводах США и Европы. Отгружаем в страны СНГ под объёмы партнёра.",
+        "KIQ Labs, B2B-дистрибьютор с прямыми контрактами на заводах США и Европы. Отгружаем в страны СНГ под объёмы партнёра.",
       benefits: [
         {
           n: "01",
@@ -59,7 +59,7 @@ export const dict = {
         {
           n: "03",
           title: "Гибкие объёмы",
-          body: "Подбираем партию под партнёра — от пробной до сетевой загрузки.",
+          body: "Подбираем партию под партнёра, от пробной до сетевой загрузки.",
         },
         {
           n: "04",
@@ -69,7 +69,7 @@ export const dict = {
       ],
     },
     comparison: {
-      eyebrow: "§ 03 — Сравнение",
+      eyebrow: "§ 03 · Сравнение",
       headline1: "Почему",
       headlineHl: "с KIQ дешевле",
       headline2: ", чем напрямую.",
@@ -119,12 +119,12 @@ export const dict = {
       ],
     },
     markets: {
-      eyebrow: "§ 04 — Где работаем",
+      eyebrow: "§ 04 · Где работаем",
       headline1: "Работаем в странах, где",
       headlineHl: "нужен поставщик",
       headline2: ".",
       description:
-        "Готовая документация, сертификация и таможенное сопровождение под каждое направление. Никаких разовых отгрузок — только постоянные партнёрства.",
+        "Готовая документация, сертификация и таможенное сопровождение под каждое направление. Никаких разовых отгрузок, только постоянные партнёрства.",
       activeMarkets: "Активные рынки",
       countries: "стран",
       active: "Активно",
@@ -155,7 +155,7 @@ export const dict = {
       },
     },
     services: {
-      eyebrow: "§ 05 — Что мы делаем",
+      eyebrow: "§ 05 · Что мы делаем",
       headline1: "Четыре формата",
       headlineHl: "сотрудничества",
       headline2: ".",
@@ -213,7 +213,7 @@ export const dict = {
       ],
     },
     brands: {
-      eyebrow: "§ 06 — Бренды",
+      eyebrow: "§ 06 · Бренды",
       headline1: "брендов, которые",
       headlineHl: "уже продаются",
       headline2: "в вашем регионе.",
@@ -221,7 +221,7 @@ export const dict = {
         "Кураторский портфель производителей-лидеров. Все верифицированы у источника: аудит, сертификат анализа, готовая импортная документация.",
       brandsLabel: "брендов",
       catalogNote:
-        "Не нашли нужный бренд? У нас есть доступ ко всему ассортименту США и ЕС — закажем под ваш запрос.",
+        "Не нашли нужный бренд? У нас есть доступ ко всему ассортименту США и ЕС, закажем под ваш запрос.",
       catalogCta: "Запросить полный каталог",
       categories: [
         { name: "Спортивное питание" },
@@ -229,12 +229,12 @@ export const dict = {
       ],
     },
     advantages: {
-      eyebrow: "§ 08 — Почему мы",
+      eyebrow: "§ 08 · Почему мы",
       headline1: "Пять причин, почему",
       headlineHl: "с нами выгоднее",
       headline2: ".",
       description:
-        "Не маркетинг — конкретные операционные преимущества, которые закрываются цифрами в первом же договоре.",
+        "Не маркетинг, конкретные операционные преимущества, которые закрываются цифрами в первом же договоре.",
       items: [
         {
           n: "01",
@@ -259,17 +259,17 @@ export const dict = {
         {
           n: "05",
           title: "Долгосрочные партнёрства",
-          body: "Инвестируем в многолетние отношения — эксклюзивные права, совместное планирование и развитие рынка.",
+          body: "Инвестируем в многолетние отношения, эксклюзивные права, совместное планирование и развитие рынка.",
         },
       ],
     },
     contact: {
-      eyebrow: "§ 09 — Получить прайс",
+      eyebrow: "§ 09 · Получить прайс",
       headline1: "Получите B2B-прайс",
       headlineHl: "за 1 рабочий день",
       headline2: ".",
       description:
-        "Оставьте контакты — пришлём прайс с действующими ценами по вашим SKU, рассчитаем логистику и оформим документы под ваш рынок.",
+        "Оставьте контакты, пришлём прайс с действующими ценами по вашим SKU, рассчитаем логистику и оформим документы под ваш рынок.",
       phoneLabel: "Телефон",
       emailLabel: "Email",
       hqLabel: "Главный офис",
@@ -303,7 +303,7 @@ export const dict = {
       success: {
         label: "● Запрос принят",
         title: "Спасибо. Ваша заявка в обработке.",
-        body: "Менеджер KIQ Labs ответит вам на email в течение одного рабочего дня — с прайсом, условиями и следующими шагами.",
+        body: "Менеджер KIQ Labs ответит вам на email в течение одного рабочего дня, с прайсом, условиями и следующими шагами.",
       },
       countries: [
         { code: "KZ", name: "Казахстан", flag: "🇰🇿" },
@@ -343,11 +343,11 @@ export const dict = {
         eyebrowOpt: "Только опт · B2B",
         eyebrowNoRetail: "Розница не обслуживается",
         headline1: "Витамины и спортпит",
-        headline2: "оптом — напрямую с фабрик США и ЕС.",
+        headline2: "оптом, напрямую с фабрик США и ЕС.",
         description1: "Ответьте на",
         descriptionHl: "5 коротких вопросов",
         description2:
-          "— пришлём персональное предложение с ценами под ваш бизнес.",
+          ", пришлём персональное предложение с ценами под ваш бизнес.",
         cta: "Получить предложение",
         ctaHint: "60 секунд · без регистрации",
         backToSite: "← На сайт",
@@ -355,7 +355,7 @@ export const dict = {
           { title: "До −35%", body: "К рынку, без посредников" },
           { title: "Ответ за 2 часа", body: "В рабочее время" },
           { title: "США & ЕС", body: "Прямые контракты с фабриками" },
-          { title: "Без регистрации", body: "5 вопросов — и готово" },
+          { title: "Без регистрации", body: "5 вопросов, и готово" },
         ],
       },
       common: {
@@ -408,7 +408,7 @@ export const dict = {
       step3: {
         eyebrow: "Вопрос 3 из 5",
         title: "Куда нужна поставка?",
-        hint: "Выберите целевой рынок — у нас готовая документация под каждый.",
+        hint: "Выберите целевой рынок, у нас готовая документация под каждый.",
         countryNames: {
           KZ: "Казахстан",
           UZ: "Узбекистан",
@@ -425,7 +425,7 @@ export const dict = {
       step4: {
         eyebrow: "Вопрос 4 из 5",
         title: "Какие объёмы планируете?",
-        hint: "Приблизительная оценка — мы предложим оптимальный формат.",
+        hint: "Приблизительная оценка, мы предложим оптимальный формат.",
         volumes: [
           {
             id: "trial",
@@ -464,7 +464,7 @@ export const dict = {
         accepted: "Заявка принята",
         title: "Спасибо",
         thanksName: "Спасибо, {name}!",
-        body: "Менеджер свяжется с вами в течение 2 часов — пришлём прайс под ваш бизнес и обсудим условия поставки.",
+        body: "Менеджер свяжется с вами в течение 2 часов, пришлём прайс под ваш бизнес и обсудим условия поставки.",
         tg: "Написать в Telegram",
         wa: "Открыть WhatsApp",
         backToSite: "← Вернуться на сайт",
@@ -511,8 +511,8 @@ export const dict = {
       bottleCardTitleHl: "No middlemen.",
     },
     about: {
-      eyebrow: "§ 02 — About",
-      headline1: "We buy from the manufacturer — and sell to you",
+      eyebrow: "§ 02 · About",
+      headline1: "We buy from the manufacturer, and sell to you",
       headlineHl: "with no middlemen",
       description:
         "KIQ Labs is a B2B distributor with direct contracts at US and European factories. We ship to CIS markets in volumes calibrated to each partner.",
@@ -530,7 +530,7 @@ export const dict = {
         {
           n: "03",
           title: "Flexible volumes",
-          body: "We size the batch to the partner — from a pilot to a full retail load-in.",
+          body: "We size the batch to the partner, from a pilot to a full retail load-in.",
         },
         {
           n: "04",
@@ -540,7 +540,7 @@ export const dict = {
       ],
     },
     comparison: {
-      eyebrow: "§ 03 — Comparison",
+      eyebrow: "§ 03 · Comparison",
       headline1: "Why",
       headlineHl: "KIQ is cheaper",
       headline2: " than going direct.",
@@ -560,7 +560,7 @@ export const dict = {
         {
           metric: "Minimum batch",
           without: "Full container only",
-          with: "Flexible — sized to partner",
+          with: "Flexible, sized to partner",
           win: "lower entry bar",
         },
         {
@@ -571,7 +571,7 @@ export const dict = {
         },
         {
           metric: "Local paperwork",
-          without: "You handle it — delays risk",
+          without: "You handle it, delays risk",
           with: "Ready dossier for CIS & Caucasus",
           win: "0 risk",
         },
@@ -590,12 +590,12 @@ export const dict = {
       ],
     },
     markets: {
-      eyebrow: "§ 04 — Where we ship",
+      eyebrow: "§ 04 · Where we ship",
       headline1: "We work in markets that",
       headlineHl: "need a supplier",
       headline2: ".",
       description:
-        "Ready paperwork, certification and customs clearance for every market. No one-off shipments — only ongoing partnerships.",
+        "Ready paperwork, certification and customs clearance for every market. No one-off shipments, only ongoing partnerships.",
       activeMarkets: "Active markets",
       countries: "countries",
       active: "Active",
@@ -626,7 +626,7 @@ export const dict = {
       },
     },
     services: {
-      eyebrow: "§ 05 — What we do",
+      eyebrow: "§ 05 · What we do",
       headline1: "Four ways to",
       headlineHl: "work with us",
       headline2: ".",
@@ -684,7 +684,7 @@ export const dict = {
       ],
     },
     brands: {
-      eyebrow: "§ 06 — Brands",
+      eyebrow: "§ 06 · Brands",
       headline1: "brands that",
       headlineHl: "already sell",
       headline2: "in your region.",
@@ -692,7 +692,7 @@ export const dict = {
         "A curated portfolio of category-leading manufacturers. All verified at source: factory audit, certificate of analysis, ready-to-import documentation.",
       brandsLabel: "brands",
       catalogNote:
-        "Can't find the brand you need? We have access to the full US and EU range — we'll source it on request.",
+        "Can't find the brand you need? We have access to the full US and EU range, we'll source it on request.",
       catalogCta: "Request the full catalogue",
       categories: [
         { name: "Sports nutrition" },
@@ -700,12 +700,12 @@ export const dict = {
       ],
     },
     advantages: {
-      eyebrow: "§ 08 — Why us",
+      eyebrow: "§ 08 · Why us",
       headline1: "Five reasons",
       headlineHl: "we're cheaper to use",
       headline2: ".",
       description:
-        "Not marketing — concrete operational advantages that pay off in the very first contract.",
+        "Not marketing, concrete operational advantages that pay off in the very first contract.",
       items: [
         {
           n: "01",
@@ -730,17 +730,17 @@ export const dict = {
         {
           n: "05",
           title: "Long-term partnerships",
-          body: "We invest in multi-year relationships — exclusive rights, joint planning and market development.",
+          body: "We invest in multi-year relationships, exclusive rights, joint planning and market development.",
         },
       ],
     },
     contact: {
-      eyebrow: "§ 09 — Get the price list",
+      eyebrow: "§ 09 · Get the price list",
       headline1: "Get the B2B price list",
       headlineHl: "in 1 business day",
       headline2: ".",
       description:
-        "Leave your details — we'll send the current prices for your SKUs, work out the logistics and prep the paperwork for your market.",
+        "Leave your details, we'll send the current prices for your SKUs, work out the logistics and prep the paperwork for your market.",
       phoneLabel: "Phone",
       emailLabel: "Email",
       hqLabel: "Headquarters",
@@ -774,7 +774,7 @@ export const dict = {
       success: {
         label: "● Enquiry received",
         title: "Thanks. Your enquiry is in our queue.",
-        body: "A KIQ Labs partnership manager will reply to your email within one business day — with the price list, terms and next steps.",
+        body: "A KIQ Labs partnership manager will reply to your email within one business day, with the price list, terms and next steps.",
       },
       countries: [
         { code: "KZ", name: "Kazakhstan", flag: "🇰🇿" },
@@ -814,10 +814,10 @@ export const dict = {
         eyebrowOpt: "B2B · wholesale only",
         eyebrowNoRetail: "No retail enquiries",
         headline1: "Vitamins and sports nutrition",
-        headline2: "wholesale — direct from US & EU factories.",
+        headline2: "wholesale, direct from US & EU factories.",
         description1: "Answer",
         descriptionHl: "5 short questions",
-        description2: "— we'll send a custom offer tailored to your business.",
+        description2: ", we'll send a custom offer tailored to your business.",
         cta: "Get the offer",
         ctaHint: "60 seconds · no sign-up",
         backToSite: "← Back to site",
@@ -825,7 +825,7 @@ export const dict = {
           { title: "Up to −35%", body: "Off market, no middlemen" },
           { title: "Reply in 2 hours", body: "During business hours" },
           { title: "US & EU", body: "Direct contracts with factories" },
-          { title: "No sign-up", body: "5 questions — and you're done" },
+          { title: "No sign-up", body: "5 questions, and you're done" },
         ],
       },
       common: {
@@ -882,7 +882,7 @@ export const dict = {
       step3: {
         eyebrow: "Question 3 of 5",
         title: "Where do you need shipping?",
-        hint: "Pick your target market — we have paperwork for each.",
+        hint: "Pick your target market, we have paperwork for each.",
         countryNames: {
           KZ: "Kazakhstan",
           UZ: "Uzbekistan",
@@ -899,7 +899,7 @@ export const dict = {
       step4: {
         eyebrow: "Question 4 of 5",
         title: "What volumes are you planning?",
-        hint: "A rough estimate — we'll suggest the right format.",
+        hint: "A rough estimate, we'll suggest the right format.",
         volumes: [
           {
             id: "trial",
@@ -938,7 +938,7 @@ export const dict = {
         accepted: "Enquiry received",
         title: "Thanks",
         thanksName: "Thanks, {name}!",
-        body: "Our manager will be in touch within 2 hours — we'll send a tailored offer and discuss supply terms.",
+        body: "Our manager will be in touch within 2 hours, we'll send a tailored offer and discuss supply terms.",
         tg: "Message on Telegram",
         wa: "Open in WhatsApp",
         backToSite: "← Back to site",
