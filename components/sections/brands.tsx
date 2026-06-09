@@ -12,14 +12,14 @@ const SPORTS_BRANDS: Brand[] = [
   { name: "Dymatize", domain: "dymatize.com" },
   { name: "Ultimate Nutrition", domain: "ultimatenutrition.com" },
   { name: "BPI Sports", domain: "bpisports.com" },
-  { name: "EVL", domain: "evlutionnutrition.com" },
+  { name: "EVL", domain: "evlnutrition.com" },
   { name: "Xtend", domain: "xtend.com" },
   { name: "Nutrex", domain: "nutrex.com" },
   { name: "Mutant", domain: "mutantnation.com" },
-  { name: "Inner Armour", domain: "innerarmoursports.com" },
+  { name: "Inner Armour", domain: "innerarmour.com" },
   { name: "Apollon Nutrition", domain: "apollonnutrition.com" },
   { name: "Dy Nutrition", domain: "dynutrition.com" },
-  { name: "SANN", domain: "sann.eu" },
+  { name: "SANN", domain: "sann.pro" },
   { name: "Per4m", domain: "per4mnutrition.com" },
 ];
 
@@ -34,9 +34,9 @@ const VITAMIN_BRANDS: Brand[] = [
   { name: "Metagenics", domain: "metagenics.com" },
   { name: "Twinlab", domain: "twinlab.com" },
   { name: "Doublewood", domain: "doublewoodsupplements.com" },
-  { name: "Weider", domain: "weider.com" },
+  { name: "Weider", domain: "weidernutrition.com" },
   { name: "Nutrend", domain: "nutrend.com" },
-  { name: "Elicore Labs", domain: "elicorelabs.com" },
+  { name: "Elicore Labs", domain: "elicore.com" },
   { name: "OstroVit", domain: "ostrovit.com" },
   { name: "MyProtein", domain: "myprotein.com" },
 ];
@@ -44,22 +44,37 @@ const VITAMIN_BRANDS: Brand[] = [
 const TOTAL = SPORTS_BRANDS.length + VITAMIN_BRANDS.length;
 
 function BrandChip({ brand }: { brand: Brand }) {
-  const [logoOk, setLogoOk] = useState(true);
+  // Source priority: DuckDuckGo (best for niche brands) → Google → fallback initials
+  const sources = [
+    `https://icons.duckduckgo.com/ip3/${brand.domain}.ico`,
+    `https://www.google.com/s2/favicons?domain=${brand.domain}&sz=128`,
+  ];
+  const [sourceIdx, setSourceIdx] = useState(0);
+  const [failed, setFailed] = useState(false);
+
+  const onErr = () => {
+    if (sourceIdx < sources.length - 1) {
+      setSourceIdx((i) => i + 1);
+    } else {
+      setFailed(true);
+    }
+  };
+
   return (
     <span className="inline-flex items-center gap-2.5 pl-2 pr-4 py-1.5 rounded-full bg-[var(--color-bone)] border border-[var(--color-line)] hover:border-[var(--color-grass)] transition-colors cursor-default group">
-      {logoOk ? (
-        <span className="grid h-7 w-7 place-items-center rounded-full bg-white overflow-hidden shrink-0">
+      {!failed ? (
+        <span className="grid h-7 w-7 place-items-center rounded-full bg-white overflow-hidden shrink-0 border border-[var(--color-line-soft)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`https://www.google.com/s2/favicons?domain=${brand.domain}&sz=64`}
+            src={sources[sourceIdx]}
             alt={brand.name}
             className="h-5 w-5 object-contain"
             loading="lazy"
-            onError={() => setLogoOk(false)}
+            onError={onErr}
           />
         </span>
       ) : (
-        <span className="grid h-7 w-7 place-items-center rounded-full bg-[var(--color-grass)]/10 text-[var(--color-grass)] font-mono text-[10px] font-bold shrink-0">
+        <span className="grid h-7 w-7 place-items-center rounded-full bg-[var(--color-grass)] text-white font-mono text-[10px] font-bold shrink-0">
           {brand.name
             .split(" ")
             .map((w) => w[0])
