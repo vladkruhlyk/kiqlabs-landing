@@ -1,44 +1,79 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import { useLang } from "@/components/ui/lang-provider";
 
-const SPORTS_BRANDS = [
-  "Optimum Nutrition",
-  "BSN",
-  "Dymatize",
-  "Ultimate Nutrition",
-  "BPI Sports",
-  "EVL",
-  "Xtend",
-  "Nutrex",
-  "Mutant",
-  "Inner Armour",
-  "Apollon Nutrition",
-  "Dy Nutrition",
-  "SANN",
-  "Per4m",
+type Brand = { name: string; domain: string };
+
+const SPORTS_BRANDS: Brand[] = [
+  { name: "Optimum Nutrition", domain: "optimumnutrition.com" },
+  { name: "BSN", domain: "bsnsupplements.com" },
+  { name: "Dymatize", domain: "dymatize.com" },
+  { name: "Ultimate Nutrition", domain: "ultimatenutrition.com" },
+  { name: "BPI Sports", domain: "bpisports.com" },
+  { name: "EVL", domain: "evlutionnutrition.com" },
+  { name: "Xtend", domain: "xtend.com" },
+  { name: "Nutrex", domain: "nutrex.com" },
+  { name: "Mutant", domain: "mutantnation.com" },
+  { name: "Inner Armour", domain: "innerarmoursports.com" },
+  { name: "Apollon Nutrition", domain: "apollonnutrition.com" },
+  { name: "Dy Nutrition", domain: "dynutrition.com" },
+  { name: "SANN", domain: "sann.eu" },
+  { name: "Per4m", domain: "per4mnutrition.com" },
 ];
 
-const VITAMIN_BRANDS = [
-  "NOW Foods",
-  "Solgar",
-  "Swanson Vitamins",
-  "Life Extension",
-  "Source Naturals",
-  "Pure Encapsulations",
-  "Douglas Labs",
-  "Metagenics",
-  "Twinlab",
-  "Doublewood",
-  "Weider",
-  "Nutrend",
-  "Elicore Labs",
-  "OstroVit",
-  "MyProtein",
+const VITAMIN_BRANDS: Brand[] = [
+  { name: "NOW Foods", domain: "nowfoods.com" },
+  { name: "Solgar", domain: "solgar.com" },
+  { name: "Swanson Vitamins", domain: "swansonvitamins.com" },
+  { name: "Life Extension", domain: "lifeextension.com" },
+  { name: "Source Naturals", domain: "sourcenaturals.com" },
+  { name: "Pure Encapsulations", domain: "pureencapsulations.com" },
+  { name: "Douglas Labs", domain: "douglaslabs.com" },
+  { name: "Metagenics", domain: "metagenics.com" },
+  { name: "Twinlab", domain: "twinlab.com" },
+  { name: "Doublewood", domain: "doublewoodsupplements.com" },
+  { name: "Weider", domain: "weider.com" },
+  { name: "Nutrend", domain: "nutrend.com" },
+  { name: "Elicore Labs", domain: "elicorelabs.com" },
+  { name: "OstroVit", domain: "ostrovit.com" },
+  { name: "MyProtein", domain: "myprotein.com" },
 ];
 
 const TOTAL = SPORTS_BRANDS.length + VITAMIN_BRANDS.length;
+
+function BrandChip({ brand }: { brand: Brand }) {
+  const [logoOk, setLogoOk] = useState(true);
+  return (
+    <span className="inline-flex items-center gap-2.5 pl-2 pr-4 py-1.5 rounded-full bg-[var(--color-bone)] border border-[var(--color-line)] hover:border-[var(--color-grass)] transition-colors cursor-default group">
+      {logoOk ? (
+        <span className="grid h-7 w-7 place-items-center rounded-full bg-white overflow-hidden shrink-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`https://www.google.com/s2/favicons?domain=${brand.domain}&sz=64`}
+            alt={brand.name}
+            className="h-5 w-5 object-contain"
+            loading="lazy"
+            onError={() => setLogoOk(false)}
+          />
+        </span>
+      ) : (
+        <span className="grid h-7 w-7 place-items-center rounded-full bg-[var(--color-grass)]/10 text-[var(--color-grass)] font-mono text-[10px] font-bold shrink-0">
+          {brand.name
+            .split(" ")
+            .map((w) => w[0])
+            .slice(0, 2)
+            .join("")
+            .toUpperCase()}
+        </span>
+      )}
+      <span className="text-[13px] lg:text-[14px] text-[var(--color-ink)] font-medium leading-none">
+        {brand.name}
+      </span>
+    </span>
+  );
+}
 
 export function Brands() {
   const { t } = useLang();
@@ -102,12 +137,7 @@ export function Brands() {
               </div>
               <div className="flex flex-wrap gap-2">
                 {cat.brands.map((b) => (
-                  <span
-                    key={b}
-                    className="inline-flex items-center px-3.5 py-2 rounded-full border border-[var(--color-stone)]/30 bg-[var(--color-ink)]/40 text-[13px] lg:text-[14px] text-[var(--color-bone)] hover:border-[var(--color-lime)] hover:text-[var(--color-lime)] transition-colors cursor-default"
-                  >
-                    {b}
-                  </span>
+                  <BrandChip key={b.name} brand={b} />
                 ))}
               </div>
             </motion.div>
